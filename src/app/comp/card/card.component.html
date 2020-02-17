@@ -1,0 +1,8 @@
+<div class="card m-2">
+  <div class="card-header" [ngClass]="[type, typeText]"><span [innerText]="header"></span></div>
+  <div class="card-body">
+    <h5 class="card-title" [innerText]="title"></h5>
+    <p class="card-text" [innerText]="content"></p>
+    <button (click)="clickBtn()" class="btn btn-primary">Click me</button>
+  </div>
+</div>
