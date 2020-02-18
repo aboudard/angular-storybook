@@ -1,30 +1,50 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
+/**
+ * Composant bouton avec texte, couleur, taille et icône paramétrables
+ * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent
+ */
 @Component({
   selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  templateUrl: './button.component.html'
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
 
+  /**
+   * Label : le texte affiché sur le bouton
+   */
   @Input()
   label: string;
 
+  /**
+   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-
+   * https://getbootstrap.com/docs/4.4/utilities/colors/
+   */
   @Input()
   color: string;
 
+  /**
+   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg
+   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes
+   */
   @Input()
   size: string;
 
-  @Output() btnClicked = new EventEmitter<boolean>();
+  /**
+   * Icône affichée sur le bouton, à gauche du label
+   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome
+   * https://github.com/FortAwesome/angular-fontawesome
+   */
+  @Input()
+  icon: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  /**
+   * Event lié au click sur le bouton : pas de remontée de data dans le $event
+   */
+  @Output() btnClicked = new EventEmitter();
 
   clickBtn(): void {
-    this.btnClicked.emit(true);
+    this.btnClicked.emit();
   }
 
 }

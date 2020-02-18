@@ -1,0 +1,724 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [
+        {
+            "name": "UtilsService",
+            "id": "injectable-UtilsService-0772bc4fc965ab02717e0aab8c5e8ad7",
+            "file": "src/app/shared/utils.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "initFaIcons",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch\n    );\n  }\n\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "faIconLibrary",
+                        "type": "FaIconLibrary"
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "faIconLibrary",
+                        "type": "FaIconLibrary",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "classes": [
+        {
+            "name": "AppPage",
+            "id": "class-AppPage-a0db91bfa3b9914e9048612074084ee6",
+            "file": "e2e/src/app.po.ts",
+            "type": "class",
+            "sourceCode": "import { browser, by, element } from 'protractor';\n\nexport class AppPage {\n  navigateTo(): Promise<unknown> {\n    return browser.get(browser.baseUrl) as Promise<unknown>;\n  }\n\n  getTitleText(): Promise<string> {\n    return element(by.css('app-root .content span')).getText() as Promise<string>;\n  }\n}\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getTitleText",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<string>",
+                    "typeParameters": [],
+                    "line": 8
+                },
+                {
+                    "name": "navigateTo",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Promise<unknown>",
+                    "typeParameters": [],
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-412bb18883dc19e94807dbe923a0916f",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'angular-storybook'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "clickBtn",
+                    "args": [
+                        {
+                            "name": "flag",
+                            "type": "boolean"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "jsdoctags": [
+                        {
+                            "name": "flag",
+                            "type": "boolean",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(flag: boolean): void {\n    console.log('test');\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService"
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "utilsService",
+                        "type": "UtilsService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"container-fluid\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn($event)\"\n    [content]=\"'With supporting text below as a natural lead-in to additional content.'\"></app-card>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn($event)\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n  </div>\n\n</div>\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-c9e4b67502d6dee0276f2ffef96e4c78",
+            "file": "src/app/comp/button/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-button",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "description": "<p>Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n<a href=\"https://getbootstrap.com/docs/4.4/utilities/colors/\">https://getbootstrap.com/docs/4.4/utilities/colors/</a></p>\n",
+                    "line": 24,
+                    "type": "string"
+                },
+                {
+                    "name": "icon",
+                    "description": "<p>Icône affichée sur le bouton, à gauche du label\nTirée du catalogue fontawesome, implémenté via angular-fontawesome</p>\n",
+                    "line": 38,
+                    "type": "string"
+                },
+                {
+                    "name": "label",
+                    "description": "<p>Label : le texte affiché sur le bouton</p>\n",
+                    "line": 17,
+                    "type": "string"
+                },
+                {
+                    "name": "size",
+                    "description": "<p>Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n<a href=\"https://getbootstrap.com/docs/4.4/components/buttons/#sizes\">https://getbootstrap.com/docs/4.4/components/buttons/#sizes</a></p>\n",
+                    "line": 31,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "btnClicked",
+                    "defaultValue": "new EventEmitter()",
+                    "description": "<p>Event lié au click sur le bouton : pas de remontée de data dans le $event</p>\n",
+                    "line": 43,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "clickBtn",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "<p>Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d&#39;appeler une méthode du parent</p>\n",
+            "rawdescription": "Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\n\n/**\n * Composant bouton avec texte, couleur, taille et icône paramétrables\n * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html'\n})\nexport class ButtonComponent {\n\n  /**\n   * Label : le texte affiché sur le bouton\n   */\n  @Input()\n  label: string;\n\n  /**\n   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n   * https://getbootstrap.com/docs/4.4/utilities/colors/\n   */\n  @Input()\n  color: string;\n\n  /**\n   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes\n   */\n  @Input()\n  size: string;\n\n  /**\n   * Icône affichée sur le bouton, à gauche du label\n   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome\n   */\n  @Input()\n  icon: string;\n\n  /**\n   * Event lié au click sur le bouton : pas de remontée de data dans le $event\n   */\n  @Output() btnClicked = new EventEmitter();\n\n  clickBtn(): void {\n    this.btnClicked.emit();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<button (click)=\"clickBtn()\" class=\"btn\" [ngClass]=\"['btn-'+color, 'btn-'+size]\">\n  <fa-icon *ngIf=\"icon\" class=\"mr-1\" [icon]=\"icon\"></fa-icon>{{label}}\n</button>\n"
+        },
+        {
+            "name": "CardComponent",
+            "id": "component-CardComponent-d9ec7aa000799ebaf8b01bf0a6259740",
+            "file": "src/app/comp/card/card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-card",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "line": 13,
+                    "type": "string"
+                },
+                {
+                    "name": "content",
+                    "line": 22,
+                    "type": "string"
+                },
+                {
+                    "name": "header",
+                    "line": 16,
+                    "type": "string"
+                },
+                {
+                    "name": "title",
+                    "line": 19,
+                    "type": "string"
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "'light'",
+                    "line": 10
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "btnClicked",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "line": 24,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "clickBtn",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'app-card',\n  templateUrl: './card.component.html'\n})\nexport class CardComponent implements OnInit {\n\n  @Input()\n  type = 'light';\n\n  @Input()\n  color: string;\n\n  @Input()\n  header: string;\n\n  @Input()\n  title: string;\n\n  @Input()\n  content: string;\n\n  @Output() btnClicked = new EventEmitter<boolean>();\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n  clickBtn(): void {\n    this.btnClicked.emit(true);\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 24
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"card m-2\">\n  <div class=\"card-header\" [ngClass]=\"['bg-'+type, 'text-'+color]\"><span [innerText]=\"header\"></span></div>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\" [innerText]=\"title\"></h5>\n    <p class=\"card-text\" [innerText]=\"content\"></p>\n  </div>\n  <div class=\"card-footer\">\n    <app-button label=\"Click me\" icon=\"search\" color=\"success\" (btnClicked)=\"clickBtn()\" size=\"sm\"></app-button>\n  </div>\n</div>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "CardComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "BackgroundHeaderCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/2-Card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: CardComponent,\r\n  props: {\r\n    type: text('Header bg', 'primary'),\r\n    color: text('Header', 'white'),\r\n    header: 'Hello Card',\r\n    title: 'This the title',\r\n    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',\r\n    btnClicked: action('👊 Button was clicked')\r\n  },\r\n})"
+            },
+            {
+                "name": "ButtonWithAction",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    btnClicked: action('This was clicked OMG'),\n  },\n})"
+            },
+            {
+                "name": "ButtonWithLinkToAnotherStory",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    color: 'danger',\n    size: 'sm',\n    label: 'Lien vers une autre Story',\n    onClick: linkTo('Card SMA'),\n  },\n})"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "provideFa",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/utils.ts",
+                "type": "object",
+                "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(faCheck, faSearch);\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "literal type"
+            },
+            {
+                "name": "SimpleCard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/2-Card.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: CardComponent,\r\n  props: {\r\n    header: 'Hello Card',\r\n    title: 'This the title',\r\n    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',\r\n    btnClicked: action('👊 Button was clicked')\r\n  },\r\n})"
+            },
+            {
+                "name": "Text",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: text('Taille', null),\n    color: text('Couleur', 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/stories/2-Card.stories.ts": [
+                {
+                    "name": "BackgroundHeaderCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/2-Card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: CardComponent,\r\n  props: {\r\n    type: text('Header bg', 'primary'),\r\n    color: text('Header', 'white'),\r\n    header: 'Hello Card',\r\n    title: 'This the title',\r\n    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',\r\n    btnClicked: action('👊 Button was clicked')\r\n  },\r\n})"
+                },
+                {
+                    "name": "SimpleCard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/2-Card.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: CardComponent,\r\n  props: {\r\n    header: 'Hello Card',\r\n    title: 'This the title',\r\n    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',\r\n    btnClicked: action('👊 Button was clicked')\r\n  },\r\n})"
+                }
+            ],
+            "src/stories/1-Button.stories.ts": [
+                {
+                    "name": "ButtonWithAction",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    btnClicked: action('This was clicked OMG'),\n  },\n})"
+                },
+                {
+                    "name": "ButtonWithLinkToAnotherStory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    color: 'danger',\n    size: 'sm',\n    label: 'Lien vers une autre Story',\n    onClick: linkTo('Card SMA'),\n  },\n})"
+                },
+                {
+                    "name": "Text",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: text('Taille', null),\n    color: text('Couleur', 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                }
+            ],
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/stories/utils.ts": [
+                {
+                    "name": "provideFa",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/utils.ts",
+                    "type": "object",
+                    "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(faCheck, faSearch);\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 5,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "e2e/src/app.po.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "AppPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/comp/button/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 85,
+                "coverageCount": "6/7",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/comp/card/card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/utils.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "UtilsService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonWithAction",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonWithLinkToAnotherStory",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Text",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/2-Card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BackgroundHeaderCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/2-Card.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SimpleCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/utils.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "provideFa",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

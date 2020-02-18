@@ -1,3 +1,3 @@
 <button (click)="clickBtn()" class="btn" [ngClass]="['btn-'+color, 'btn-'+size]">
-  {{label}}
+  <fa-icon *ngIf="icon" class="mr-1" [icon]="icon"></fa-icon>{{label}}
 </button>

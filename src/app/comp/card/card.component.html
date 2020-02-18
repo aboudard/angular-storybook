@@ -5,8 +5,6 @@
     <p class="card-text" [innerText]="content"></p>
   </div>
   <div class="card-footer">
-    <button (click)="clickBtn()" class="btn btn-success float-right">
-      Click me
-    </button>
+    <app-button label="Click me" icon="search" color="success" (btnClicked)="clickBtn()" size="sm"></app-button>
   </div>
 </div>

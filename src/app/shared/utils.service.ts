@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import {
-  faCheck
+  faCheck, faSearch
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class UtilsService {
 
   initFaIcons(): void {
     this.faIconLibrary.addIcons(
-      faCheck
+      faCheck, faSearch
     );
   }
 
