@@ -1,52 +1,43 @@
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
-
-import { Button } from '@storybook/angular/demo';
+import { ButtonComponent } from 'src/app/comp/button/button.component';
 
 export default {
   title: 'Button',
-  component: Button,
+  component: ButtonComponent,
 };
 
 export const Text = () => ({
-  component: Button,
+  component: ButtonComponent,
   props: {
-    text: 'Hello Button',
+    label: 'Hello Button',
+    color: 'primary'
   },
 });
-
-export const Emoji = () => ({
-  component: Button,
-  props: {
-    text: '😀 😎 👍 💯',
-  },
-});
-
-Emoji.story = {
-  parameters: { notes: 'My notes on a button with emojis' },
-};
 
 export const WithSomeEmojiAndAction = () => ({
-  component: Button,
+  component: ButtonComponent,
   props: {
-    text: '😀 😎 👍 💯',
-    onClick: action('This was clicked OMG'),
+    label: 'Avec action',
+    color: 'success',
+    btnClicked: action('This was clicked OMG'),
   },
 });
 
 WithSomeEmojiAndAction.story = {
-  name: 'with some emoji and action',
-  parameters: { notes: 'My notes on a button with emojis' },
+  name: 'Bouton avec action'
 };
 
 export const ButtonWithLinkToAnotherStory = () => ({
-  component: Button,
+  component: ButtonComponent,
   props: {
-    text: 'Go to Welcome Story',
-    onClick: linkTo('Welcome'),
+    color: 'danger',
+    size: 'sm',
+    label: 'Lien vers une autre Story',
+    onClick: linkTo('Card SMA'),
   },
 });
 
 ButtonWithLinkToAnotherStory.story = {
-  name: 'button with link to another story',
+  name: 'Bouton with link to another story',
 };

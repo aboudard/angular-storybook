@@ -7,10 +7,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input()
-  type = 'bg-light';
+  type = 'light';
 
   @Input()
-  typeText: string;
+  color: string;
 
   @Input()
   header: string;
