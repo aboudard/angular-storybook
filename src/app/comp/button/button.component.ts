@@ -1,12 +1,16 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * Composant bouton avec texte, couleur, taille et icône paramétrables
  * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent
+ * @example
+ * <app-button color="primary" icon="check" label="Bouton" (btnClicked)="clickBtn($event)">
+ * </app-button>
  */
 @Component({
   selector: 'app-button',
-  templateUrl: './button.component.html'
+  templateUrl: './button.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
 

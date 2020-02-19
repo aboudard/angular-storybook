@@ -1,6 +1,68 @@
 {
     "pipes": [],
-    "interfaces": [],
+    "interfaces": [
+        {
+            "name": "User",
+            "id": "interface-User-36e0e0ca61fac08b55852af0f579a410",
+            "file": "src/app/dto/user.ts",
+            "type": "interface",
+            "sourceCode": "export interface User {\r\n  badge: string;\r\n  habilitations: string[];\r\n  prenom: string;\r\n  nom: string;\r\n  version: string;\r\n  profil: string;\r\n  sitesGestion: string[];\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "badge",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "habilitations",
+                    "type": "string[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "nom",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "prenom",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "profil",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "sitesGestion",
+                    "type": "string[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "version",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        }
+    ],
     "injectables": [
         {
             "name": "UtilsService",
@@ -79,7 +141,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-412bb18883dc19e94807dbe923a0916f",
+            "id": "component-AppComponent-36526f60c4cf3354ca5e3d413156c6f1",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -104,7 +166,23 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 10
+                    "line": 11
+                },
+                {
+                    "name": "urlLogo",
+                    "defaultValue": "'assets/img/logosma_accueil.png'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "user",
+                    "defaultValue": "{\n    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\n    habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  }",
+                    "type": "User",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
                 }
             ],
             "methodsClass": [
@@ -119,7 +197,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 24,
                     "jsdoctags": [
                         {
                             "name": "flag",
@@ -136,7 +214,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14
+                    "line": 20
                 }
             ],
             "hostBindings": [],
@@ -144,7 +222,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(flag: boolean): void {\n    console.log('test');\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\nimport { User } from './dto/user';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n  user: User = {\n    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\n    habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  };\n  urlLogo = 'assets/img/logosma_accueil.png';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(flag: boolean): void {\n    console.log('test');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -162,7 +240,7 @@
                         "type": "UtilsService"
                     }
                 ],
-                "line": 10,
+                "line": 16,
                 "jsdoctags": [
                     {
                         "name": "utilsService",
@@ -176,12 +254,13 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"container-fluid\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn($event)\"\n    [content]=\"'With supporting text below as a natural lead-in to additional content.'\"></app-card>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn($event)\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n  </div>\n\n</div>\n"
+            "templateData": "<div class=\"container-fluid\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn($event)\"\n    [content]=\"'With supporting text below as a natural lead-in to additional content.'\"></app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn($event)\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n\n</div>\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-c9e4b67502d6dee0276f2ffef96e4c78",
+            "id": "component-ButtonComponent-841cb96cb2b525ecd49c4ac2278b08c5",
             "file": "src/app/comp/button/button.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -198,25 +277,25 @@
                 {
                     "name": "color",
                     "description": "<p>Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n<a href=\"https://getbootstrap.com/docs/4.4/utilities/colors/\">https://getbootstrap.com/docs/4.4/utilities/colors/</a></p>\n",
-                    "line": 24,
+                    "line": 28,
                     "type": "string"
                 },
                 {
                     "name": "icon",
-                    "description": "<p>Icône affichée sur le bouton, à gauche du label\nTirée du catalogue fontawesome, implémenté via angular-fontawesome</p>\n",
-                    "line": 38,
+                    "description": "<p>Icône affichée sur le bouton, à gauche du label\nTirée du catalogue fontawesome, implémenté via angular-fontawesome\n<a href=\"https://github.com/FortAwesome/angular-fontawesome\">https://github.com/FortAwesome/angular-fontawesome</a></p>\n",
+                    "line": 43,
                     "type": "string"
                 },
                 {
                     "name": "label",
                     "description": "<p>Label : le texte affiché sur le bouton</p>\n",
-                    "line": 17,
+                    "line": 21,
                     "type": "string"
                 },
                 {
                     "name": "size",
                     "description": "<p>Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n<a href=\"https://getbootstrap.com/docs/4.4/components/buttons/#sizes\">https://getbootstrap.com/docs/4.4/components/buttons/#sizes</a></p>\n",
-                    "line": 31,
+                    "line": 35,
                     "type": "string"
                 }
             ],
@@ -225,7 +304,7 @@
                     "name": "btnClicked",
                     "defaultValue": "new EventEmitter()",
                     "description": "<p>Event lié au click sur le bouton : pas de remontée de data dans le $event</p>\n",
-                    "line": 43,
+                    "line": 48,
                     "type": "EventEmitter"
                 }
             ],
@@ -237,7 +316,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45
+                    "line": 50
                 }
             ],
             "hostBindings": [],
@@ -245,10 +324,31 @@
             "description": "<p>Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d&#39;appeler une méthode du parent</p>\n",
             "rawdescription": "Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\n\n/**\n * Composant bouton avec texte, couleur, taille et icône paramétrables\n * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html'\n})\nexport class ButtonComponent {\n\n  /**\n   * Label : le texte affiché sur le bouton\n   */\n  @Input()\n  label: string;\n\n  /**\n   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n   * https://getbootstrap.com/docs/4.4/utilities/colors/\n   */\n  @Input()\n  color: string;\n\n  /**\n   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes\n   */\n  @Input()\n  size: string;\n\n  /**\n   * Icône affichée sur le bouton, à gauche du label\n   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome\n   */\n  @Input()\n  icon: string;\n\n  /**\n   * Event lié au click sur le bouton : pas de remontée de data dans le $event\n   */\n  @Output() btnClicked = new EventEmitter();\n\n  clickBtn(): void {\n    this.btnClicked.emit();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';\n\n/**\n * Composant bouton avec texte, couleur, taille et icône paramétrables\n * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent\n * @example\n * <app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\">\n * </app-button>\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent {\n\n  /**\n   * Label : le texte affiché sur le bouton\n   */\n  @Input()\n  label: string;\n\n  /**\n   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n   * https://getbootstrap.com/docs/4.4/utilities/colors/\n   */\n  @Input()\n  color: string;\n\n  /**\n   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes\n   */\n  @Input()\n  size: string;\n\n  /**\n   * Icône affichée sur le bouton, à gauche du label\n   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome\n   * https://github.com/FortAwesome/angular-fontawesome\n   */\n  @Input()\n  icon: string;\n\n  /**\n   * Event lié au click sur le bouton : pas de remontée de data dans le $event\n   */\n  @Output() btnClicked = new EventEmitter();\n\n  clickBtn(): void {\n    this.btnClicked.emit();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
+            "jsdoctags": [
+                {
+                    "pos": 276,
+                    "end": 286,
+                    "flags": 0,
+                    "kind": 288,
+                    "atToken": {
+                        "pos": 276,
+                        "end": 277,
+                        "flags": 0,
+                        "kind": 57
+                    },
+                    "tagName": {
+                        "pos": 277,
+                        "end": 284,
+                        "flags": 0,
+                        "escapedText": "example"
+                    },
+                    "comment": "<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\">\n</app-button>"
+                }
+            ],
             "templateData": "<button (click)=\"clickBtn()\" class=\"btn\" [ngClass]=\"['btn-'+color, 'btn-'+size]\">\n  <fa-icon *ngIf=\"icon\" class=\"mr-1\" [icon]=\"icon\"></fa-icon>{{label}}\n</button>\n"
         },
         {
@@ -340,6 +440,199 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"card m-2\">\n  <div class=\"card-header\" [ngClass]=\"['bg-'+type, 'text-'+color]\"><span [innerText]=\"header\"></span></div>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\" [innerText]=\"title\"></h5>\n    <p class=\"card-text\" [innerText]=\"content\"></p>\n  </div>\n  <div class=\"card-footer\">\n    <app-button label=\"Click me\" icon=\"search\" color=\"success\" (btnClicked)=\"clickBtn()\" size=\"sm\"></app-button>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "ModalPromptComponent",
+            "id": "component-ModalPromptComponent-301cb54a61c8bf5a839bc72e4214fcf0",
+            "file": "src/app/comp/modal-prompt/modal-prompt.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-modal-prompt",
+            "styleUrls": [
+                "./modal-prompt.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./modal-prompt.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "closeResult",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getDismissReason",
+                    "args": [
+                        {
+                            "name": "reason",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 23,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "reason",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "open",
+                    "args": [
+                        {
+                            "name": "content",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "jsdoctags": [
+                        {
+                            "name": "content",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';\n\n@Component({\n  selector: 'app-modal-prompt',\n  templateUrl: './modal-prompt.component.html',\n  styleUrls: ['./modal-prompt.component.scss']\n})\nexport class ModalPromptComponent {\n\n  closeResult: string;\n\n  constructor(private modalService: NgbModal) { }\n\n  open(content) {\n    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {\n      this.closeResult = `Closed with: ${result}`;\n    }, (reason) => {\n      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;\n    });\n  }\n\n  private getDismissReason(reason: any): string {\n    if (reason === ModalDismissReasons.ESC) {\n      return 'by pressing ESC';\n    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {\n      return 'by clicking on a backdrop';\n    } else {\n      return `with: ${reason}`;\n    }\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./modal-prompt.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "modalService",
+                        "type": "NgbModal"
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "modalService",
+                        "type": "NgbModal",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h4 class=\"modal-title\" id=\"modal-basic-title\">Profile update</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form>\n      <div class=\"form-group\">\n        <label for=\"dateOfBirth\">Date of birth</label>\n        <div class=\"input-group\">\n          <input id=\"dateOfBirth\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"modal.close('Save click')\">Save</button>\n  </div>\n</ng-template>\n\n<button class=\"btn btn-outline-primary\" (click)=\"open(content)\">Launch demo modal</button>\n"
+        },
+        {
+            "name": "NavbarComponent",
+            "id": "component-NavbarComponent-cb0d0ab16ecd1ffcbfb29c159d9b9d0a",
+            "file": "src/app/comp/navbar/navbar.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-navbar",
+            "styleUrls": [
+                "./navbar.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navbar.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "appTitle",
+                    "line": 18,
+                    "type": "string"
+                },
+                {
+                    "name": "urlLogo",
+                    "line": 21,
+                    "type": "string"
+                },
+                {
+                    "name": "user",
+                    "line": 15,
+                    "type": "User"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "navbarOpen",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "toggleNavbar",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\r\nimport { User } from '../../dto/user';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.css'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class NavbarComponent {\r\n\r\n  navbarOpen = false;\r\n\r\n  @Input()\r\n  user: User;\r\n\r\n  @Input()\r\n  appTitle: string;\r\n\r\n  @Input()\r\n  urlLogo: string;\r\n\r\n  constructor() { }\r\n\r\n  toggleNavbar() {\r\n    this.navbarOpen = !this.navbarOpen;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "div.float-right {\r\n  background-color: #01afec;\r\n}\r\ndiv.float-right:before {\r\n  background: #01afec;\r\n  height: 0;\r\n  border: 26px solid transparent;\r\n\r\n  content: '';\r\n  display: block;\r\n  position: relative;\r\n  left: -26px;\r\n  top: 0;\r\n  width: 0;\r\n  float: left;\r\n  transform: skew(-26deg);\r\n}\r\na.navbar-brand {\r\n  background-color: white;\r\n}\r\n",
+                    "styleUrl": "./navbar.component.css"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 21
+            },
+            "templateData": "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0\">\r\n  <a class=\"navbar-brand py-0 px-3\" href=\"#\" style=\"background-color: white\">\r\n    <img height=\"50px\" [src]=\"urlLogo\" />\r\n  </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarMain\" [ngClass]=\"{ 'show': navbarOpen }\">\r\n    <ul class=\"navbar-nav mr-auto px-2\">\r\n      <li class=\"nav-item active\">\r\n        <h5 class=\"mb-0 text-white nav-link\"><span id=\"appTitle\" [innerText]=\"appTitle\"></span></h5>\r\n      </li>\r\n      <li id=\"nav-gestion\" class=\"nav-item\">\r\n        <a class=\"nav-link\">Gestion</a>\r\n      </li>\r\n      <li id=\"nav-import\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur'\">\r\n        <a class=\"nav-link\">Import</a>\r\n      </li>\r\n      <li id=\"nav-suivi\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur' || user?.profil === 'Gestionnaire'\">\r\n        <a class=\"nav-link\">Suivi</a>\r\n      </li>\r\n      <li id=\"nav-admin\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur'\">\r\n        <a class=\"nav-link\">Admin</a>\r\n      </li>\r\n    </ul>\r\n    <div class=\"float-right pr-3\">\r\n      <span class=\"navbar-text text-white\">\r\n        <span class=\"small\">Connecté en tant que </span>\r\n        <span class=\"badge\" [ngClass]=\"{'badge-secondary': user?.profil === 'Basic',\r\n              'badge-success': user?.profil === 'Gestionnaire',\r\n              'badge-primary': user?.profil === 'Directeur',\r\n              'badge-danger': user?.profil === 'Administrateur'}\">\r\n          <span id=\"username\" [innerText]=\"user?.badge\"></span> :\r\n          <span [innerText]=\"user?.prenom\"></span>&nbsp;\r\n          <span [innerText]=\"user?.nom\"></span>\r\n        </span>\r\n        <span class=\"small\"> | <a href=\"?LLO=true\">Déconnexion</a></span>\r\n      </span>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
         }
     ],
     "modules": [
@@ -361,6 +654,12 @@
                         },
                         {
                             "name": "CardComponent"
+                        },
+                        {
+                            "name": "ModalPromptComponent"
+                        },
+                        {
+                            "name": "NavbarComponent"
                         }
                     ]
                 },
@@ -438,6 +737,30 @@
                 "defaultValue": "{\n  production: false\n}"
             },
             {
+                "name": "NavbarTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/4-Navbar.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: user,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Storybook angular'\r\n  }\r\n})"
+            },
+            {
+                "name": "optionsCouleur",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "[]",
+                "defaultValue": "['', 'primary', 'secondary', 'warning', 'success', 'danger', 'outline-primary', 'outline-secondary']"
+            },
+            {
+                "name": "optionsTaille",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "[]",
+                "defaultValue": "['', 'sm', 'lg']"
+            },
+            {
                 "name": "provideFa",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -461,12 +784,36 @@
                 "defaultValue": "() => ({\r\n  component: CardComponent,\r\n  props: {\r\n    header: 'Hello Card',\r\n    title: 'This the title',\r\n    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',\r\n    btnClicked: action('👊 Button was clicked')\r\n  },\r\n})"
             },
             {
+                "name": "SimpleModal",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/3-Modal.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  component: ModalPromptComponent\r\n})"
+            },
+            {
                 "name": "Text",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/1-Button.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: text('Taille', null),\n    color: text('Couleur', 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+            },
+            {
+                "name": "TextTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\"></app-button>`\n})"
+            },
+            {
+                "name": "user",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/4-Navbar.stories.ts",
+                "type": "object",
+                "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\r\n  habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
             }
         ],
         "functions": [],
@@ -509,12 +856,36 @@
                     "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    color: 'danger',\n    size: 'sm',\n    label: 'Lien vers une autre Story',\n    onClick: linkTo('Card SMA'),\n  },\n})"
                 },
                 {
+                    "name": "optionsCouleur",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "['', 'primary', 'secondary', 'warning', 'success', 'danger', 'outline-primary', 'outline-secondary']"
+                },
+                {
+                    "name": "optionsTaille",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "['', 'sm', 'lg']"
+                },
+                {
                     "name": "Text",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/1-Button.stories.ts",
                     "type": "",
-                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: text('Taille', null),\n    color: text('Couleur', 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                },
+                {
+                    "name": "TextTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\"></app-button>`\n})"
                 }
             ],
             "src/test.ts": [
@@ -554,6 +925,24 @@
                     "defaultValue": "{\n  production: false\n}"
                 }
             ],
+            "src/stories/4-Navbar.stories.ts": [
+                {
+                    "name": "NavbarTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/4-Navbar.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: user,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Storybook angular'\r\n  }\r\n})"
+                },
+                {
+                    "name": "user",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/4-Navbar.stories.ts",
+                    "type": "object",
+                    "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\r\n  habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
+                }
+            ],
             "src/stories/utils.ts": [
                 {
                     "name": "provideFa",
@@ -563,6 +952,16 @@
                     "type": "object",
                     "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(faCheck, faSearch);\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
                 }
+            ],
+            "src/stories/3-Modal.stories.ts": [
+                {
+                    "name": "SimpleModal",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/3-Modal.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  component: ModalPromptComponent\r\n})"
+                }
             ]
         },
         "groupedFunctions": {},
@@ -571,7 +970,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 5,
+        "count": 3,
         "status": "low",
         "files": [
             {
@@ -589,7 +988,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -608,6 +1007,33 @@
                 "name": "CardComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/comp/modal-prompt/modal-prompt.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ModalPromptComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/comp/navbar/navbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/dto/user.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -664,7 +1090,37 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "optionsCouleur",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "optionsTaille",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Text",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextTemplate",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -685,6 +1141,36 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "SimpleCard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/3-Modal.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SimpleModal",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/4-Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NavbarTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/4-Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "user",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

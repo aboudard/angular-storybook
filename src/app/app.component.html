@@ -4,6 +4,8 @@
     (btnClicked)="clickBtn($event)"
     [content]="'With supporting text below as a natural lead-in to additional content.'"></app-card>
 
+  <hr>
+
   <div class="p-2">
     <span class="mr-2">
       <app-button [color]="'primary'" [icon]="'check'" [label]="'Bouton'" (btnClicked)="clickBtn($event)"></app-button>
@@ -17,5 +19,13 @@
       </app-button>
     </span>
   </div>
+
+  <hr>
+
+  <app-modal-prompt></app-modal-prompt>
+
+  <hr>
+
+  <app-navbar [user]="user" [appTitle]="title" [urlLogo]="urlLogo"></app-navbar>
 
 </div>

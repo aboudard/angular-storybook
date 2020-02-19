@@ -1,0 +1,20 @@
+div.float-right {
+  background-color: #01afec;
+}
+div.float-right:before {
+  background: #01afec;
+  height: 0;
+  border: 26px solid transparent;
+
+  content: '';
+  display: block;
+  position: relative;
+  left: -26px;
+  top: 0;
+  width: 0;
+  float: left;
+  transform: skew(-26deg);
+}
+a.navbar-brand {
+  background-color: white;
+}

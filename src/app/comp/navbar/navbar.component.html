@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0">
+  <a class="navbar-brand py-0 px-3" href="#" style="background-color: white">
+    <img height="50px" [src]="urlLogo" />
+  </a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMain" [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto px-2">
+      <li class="nav-item active">
+        <h5 class="mb-0 text-white nav-link"><span id="appTitle" [innerText]="appTitle"></span></h5>
+      </li>
+      <li id="nav-gestion" class="nav-item">
+        <a class="nav-link">Gestion</a>
+      </li>
+      <li id="nav-import" class="nav-item" *ngIf="user?.profil === 'Administrateur'">
+        <a class="nav-link">Import</a>
+      </li>
+      <li id="nav-suivi" class="nav-item" *ngIf="user?.profil === 'Administrateur' || user?.profil === 'Gestionnaire'">
+        <a class="nav-link">Suivi</a>
+      </li>
+      <li id="nav-admin" class="nav-item" *ngIf="user?.profil === 'Administrateur'">
+        <a class="nav-link">Admin</a>
+      </li>
+    </ul>
+    <div class="float-right pr-3">
+      <span class="navbar-text text-white">
+        <span class="small">Connecté en tant que </span>
+        <span class="badge" [ngClass]="{'badge-secondary': user?.profil === 'Basic',
+              'badge-success': user?.profil === 'Gestionnaire',
+              'badge-primary': user?.profil === 'Directeur',
+              'badge-danger': user?.profil === 'Administrateur'}">
+          <span id="username" [innerText]="user?.badge"></span> :
+          <span [innerText]="user?.prenom"></span>&nbsp;
+          <span [innerText]="user?.nom"></span>
+        </span>
+        <span class="small"> | <a href="?LLO=true">Déconnexion</a></span>
+      </span>
+    </div>
+  </div>
+</nav>
