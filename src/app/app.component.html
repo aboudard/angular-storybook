@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<app-navbar [user]="user" [appTitle]="title" [urlLogo]="urlLogo"></app-navbar>
+<div class="container-fluid border">
   <h2>Angular Storybook - Bootstrap</h2>
   <app-card [type]="'primary'" [color]="'white'" [header]="'Card component'" [title]="'Titre du contenu de la carte'"
     (btnClicked)="clickBtn($event)"
@@ -26,6 +27,7 @@
 
   <hr>
 
-  <app-navbar [user]="user" [appTitle]="title" [urlLogo]="urlLogo"></app-navbar>
+  <app-navbar-ug [infoConnection]="infoConnection" [user]="user" [appTitle]="titleReglement" [urlLogo]="urlLogo">
+  </app-navbar-ug>
 
 </div>

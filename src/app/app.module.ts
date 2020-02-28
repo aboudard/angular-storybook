@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponent } from './comp/button/button.component';
 import { ModalPromptComponent } from './comp/modal-prompt/modal-prompt.component';
 import { NavbarComponent } from './comp/navbar/navbar.component';
+import { NavbarUgComponent } from './comp/navbar-ug/navbar-ug.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NavbarComponent } from './comp/navbar/navbar.component';
     CardComponent,
     ButtonComponent,
     ModalPromptComponent,
-    NavbarComponent
+    NavbarComponent,
+    NavbarUgComponent
   ],
   imports: [
     BrowserModule,

@@ -9,9 +9,13 @@ import { User } from './dto/user';
 })
 export class AppComponent implements OnInit {
   title = 'angular-storybook';
+  titleReglement = 'Règlement';
   user: User = {
-    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],
-    habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'
+    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',
+    posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'
+  };
+  infoConnection = {
+    lastLogin: 1582820287, currentTime: Date.now()
   };
   urlLogo = 'assets/img/logosma_accueil.png';
 

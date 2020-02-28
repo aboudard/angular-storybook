@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0">
+  <a class="navbar-brand py-0 px-3" href="#" style="background-color: white">
+    <img height="50px" [src]="urlLogo" />
+  </a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMain" [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav px-2">
+      <li class="nav-item active">
+        <h5 class="mb-0 text-white nav-link"><span id="appTitle" [innerText]="appTitle"></span></h5>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Accueil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Site de travail</a>
+      </li>
+    </ul>
+    <form class="form-inline mr-auto px-2">
+      <span class="navbar-text px-2">
+        Gérer les sinistres
+      </span>
+      <button class="btn btn-sm btn-outline-light ml-2" type="button">1</button>
+      <button disabled class="btn btn-sm btn-outline-light ml-2" type="button">2</button>
+    </form>
+
+    <div class="float-right pr-3">
+      <span class="navbar-text text-white my-1">
+        <span class="small mr-2">
+          <span class="mr-2" id="sg" [innerText]="user?.siteGestion"></span>
+          <span class="mx-1">/</span>
+          <span class="mr-2" id="po" [innerText]="user?.posteOp"></span>
+          <span id="sglabel" [innerText]="user?.sgLabel"></span>
+        </span>
+        <span class="badge mr-2" [ngClass]="{'badge-secondary': user?.profil === 'Basic',
+              'badge-success': user?.profil === 'Gestionnaire',
+              'badge-primary': user?.profil === 'Directeur',
+              'badge-danger': user?.profil === 'Administrateur'}">
+          <span id="username" [innerText]="user?.badge"></span> :
+          <span [innerText]="user?.prenom"></span>&nbsp;
+          <span [innerText]="user?.nom"></span>
+        </span>
+        <a href="" (click)="off()">
+          <fa-icon icon="power-off"></fa-icon>
+        </a>
+      </span>
+    </div>
+  </div>
+</nav>
+<div class="d-flex justify-content-end">
+  <span class="badge badge-light"><span class="text-secondary">dernier login :
+      {{infoConnection?.lastLogin | date:'dd/MM/yyyy hh:mm'}}</span> |
+    {{infoConnection?.currentTime | date:'dd/MM/yyyy hh:mm'}}</span>
+</div>
