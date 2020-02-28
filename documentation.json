@@ -3,10 +3,10 @@
     "interfaces": [
         {
             "name": "User",
-            "id": "interface-User-36e0e0ca61fac08b55852af0f579a410",
+            "id": "interface-User-47db2412a64b78a4d678593494807346",
             "file": "src/app/dto/user.ts",
             "type": "interface",
-            "sourceCode": "export interface User {\r\n  badge: string;\r\n  habilitations: string[];\r\n  prenom: string;\r\n  nom: string;\r\n  version: string;\r\n  profil: string;\r\n  sitesGestion: string[];\r\n}\r\n",
+            "sourceCode": "export interface User {\r\n  badge: string;\r\n  habilitations: string[];\r\n  prenom: string;\r\n  nom: string;\r\n  version: string;\r\n  profil: string;\r\n  siteGestion: string;\r\n  sgLabel: string;\r\n  posteOp: string;\r\n}\r\n",
             "properties": [
                 {
                     "name": "badge",
@@ -30,6 +30,13 @@
                     "line": 5
                 },
                 {
+                    "name": "posteOp",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10
+                },
+                {
                     "name": "prenom",
                     "type": "string",
                     "optional": false,
@@ -44,8 +51,15 @@
                     "line": 7
                 },
                 {
-                    "name": "sitesGestion",
-                    "type": "string[]",
+                    "name": "sgLabel",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "siteGestion",
+                    "type": "string",
                     "optional": false,
                     "description": "",
                     "line": 8
@@ -66,7 +80,7 @@
     "injectables": [
         {
             "name": "UtilsService",
-            "id": "injectable-UtilsService-0772bc4fc965ab02717e0aab8c5e8ad7",
+            "id": "injectable-UtilsService-abea6f8e9f5614dbb0bc198ff6db617f",
             "file": "src/app/shared/utils.service.ts",
             "properties": [],
             "methods": [
@@ -80,7 +94,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch\n    );\n  }\n\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch, faPowerOff\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch, faPowerOff\n    );\n  }\n\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -141,7 +155,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-36526f60c4cf3354ca5e3d413156c6f1",
+            "id": "component-AppComponent-bafbc33b6e918d6ec43c0e9913672799",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -161,6 +175,14 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "infoConnection",
+                    "defaultValue": "{\n    lastLogin: 1582820287, currentTime: Date.now()\n  }",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
                     "name": "title",
                     "defaultValue": "'angular-storybook'",
                     "type": "string",
@@ -169,44 +191,38 @@
                     "line": 11
                 },
                 {
+                    "name": "titleReglement",
+                    "defaultValue": "'Règlement'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
                     "name": "urlLogo",
                     "defaultValue": "'assets/img/logosma_accueil.png'",
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 20
                 },
                 {
                     "name": "user",
-                    "defaultValue": "{\n    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\n    habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  }",
+                    "defaultValue": "{\n    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\n    posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  }",
                     "type": "User",
                     "optional": false,
                     "description": "",
-                    "line": 12
+                    "line": 13
                 }
             ],
             "methodsClass": [
                 {
                     "name": "clickBtn",
-                    "args": [
-                        {
-                            "name": "flag",
-                            "type": "boolean"
-                        }
-                    ],
+                    "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24,
-                    "jsdoctags": [
-                        {
-                            "name": "flag",
-                            "type": "boolean",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
+                    "line": 28
                 },
                 {
                     "name": "ngOnInit",
@@ -214,7 +230,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 20
+                    "line": 24
                 }
             ],
             "hostBindings": [],
@@ -222,7 +238,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\nimport { User } from './dto/user';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n  user: User = {\n    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\n    habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  };\n  urlLogo = 'assets/img/logosma_accueil.png';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(flag: boolean): void {\n    console.log('test');\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\nimport { User } from './dto/user';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n  titleReglement = 'Règlement';\n  user: User = {\n    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\n    posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  };\n  infoConnection = {\n    lastLogin: 1582820287, currentTime: Date.now()\n  };\n  urlLogo = 'assets/img/logosma_accueil.png';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(): void {\n    console.log('test');\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -240,7 +256,7 @@
                         "type": "UtilsService"
                     }
                 ],
-                "line": 16,
+                "line": 20,
                 "jsdoctags": [
                     {
                         "name": "utilsService",
@@ -254,11 +270,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"container-fluid\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn($event)\"\n    [content]=\"'With supporting text below as a natural lead-in to additional content.'\"></app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn($event)\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn($event)\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n\n</div>\n"
+            "templateData": "<app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n<div class=\"container-fluid border\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn()\" [content]=\"'With supporting text below as a natural lead-in to additional content.'\">\n  </app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn()\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\" [appTitle]=\"titleReglement\"\n    (logoutClicked)=\"clickBtn()\" [urlLogo]=\"urlLogo\">\n  </app-navbar-ug>\n\n</div>\n"
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-841cb96cb2b525ecd49c4ac2278b08c5",
+            "id": "component-ButtonComponent-a5db9bae3b47a1437f063e7902d274bb",
             "file": "src/app/comp/button/button.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -324,25 +340,25 @@
             "description": "<p>Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d&#39;appeler une méthode du parent</p>\n",
             "rawdescription": "Composant bouton avec texte, couleur, taille et icône paramétrables\nAucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';\n\n/**\n * Composant bouton avec texte, couleur, taille et icône paramétrables\n * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent\n * @example\n * <app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\">\n * </app-button>\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent {\n\n  /**\n   * Label : le texte affiché sur le bouton\n   */\n  @Input()\n  label: string;\n\n  /**\n   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n   * https://getbootstrap.com/docs/4.4/utilities/colors/\n   */\n  @Input()\n  color: string;\n\n  /**\n   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes\n   */\n  @Input()\n  size: string;\n\n  /**\n   * Icône affichée sur le bouton, à gauche du label\n   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome\n   * https://github.com/FortAwesome/angular-fontawesome\n   */\n  @Input()\n  icon: string;\n\n  /**\n   * Event lié au click sur le bouton : pas de remontée de data dans le $event\n   */\n  @Output() btnClicked = new EventEmitter();\n\n  clickBtn(): void {\n    this.btnClicked.emit();\n  }\n\n}\n",
+            "sourceCode": "import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';\n\n/**\n * Composant bouton avec texte, couleur, taille et icône paramétrables\n * Aucun code fonctionnel dans le composant, il se contente d'appeler une méthode du parent\n * @example\n * <app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\">\n * </app-button>\n */\n@Component({\n  selector: 'app-button',\n  templateUrl: './button.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent {\n\n  /**\n   * Label : le texte affiché sur le bouton\n   */\n  @Input()\n  label: string;\n\n  /**\n   * Color: la couleur au sens bootstrap variable, sans préfixe bg- ou text-\n   * https://getbootstrap.com/docs/4.4/utilities/colors/\n   */\n  @Input()\n  color: string;\n\n  /**\n   * Taille du bouton au sens bootstrap, sans préfixe : sm ou lg\n   * https://getbootstrap.com/docs/4.4/components/buttons/#sizes\n   */\n  @Input()\n  size: string;\n\n  /**\n   * Icône affichée sur le bouton, à gauche du label\n   * Tirée du catalogue fontawesome, implémenté via angular-fontawesome\n   * https://github.com/FortAwesome/angular-fontawesome\n   */\n  @Input()\n  icon: string;\n\n  /**\n   * Event lié au click sur le bouton : pas de remontée de data dans le $event\n   */\n  @Output() btnClicked = new EventEmitter();\n\n  clickBtn(): void {\n    this.btnClicked.emit();\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "jsdoctags": [
                 {
-                    "pos": 276,
-                    "end": 286,
+                    "pos": 268,
+                    "end": 278,
                     "flags": 0,
                     "kind": 288,
                     "atToken": {
-                        "pos": 276,
-                        "end": 277,
+                        "pos": 268,
+                        "end": 269,
                         "flags": 0,
                         "kind": 57
                     },
                     "tagName": {
-                        "pos": 277,
-                        "end": 284,
+                        "pos": 269,
+                        "end": 276,
                         "flags": 0,
                         "escapedText": "example"
                     },
@@ -557,7 +573,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-cb0d0ab16ecd1ffcbfb29c159d9b9d0a",
+            "id": "component-NavbarComponent-cdce89cd743e3c4fbe04364e76f41db1",
             "file": "src/app/comp/navbar/navbar.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -567,7 +583,7 @@
             "providers": [],
             "selector": "app-navbar",
             "styleUrls": [
-                "./navbar.component.css"
+                "./navbar.component.scss"
             ],
             "styles": [],
             "templateUrl": [
@@ -617,12 +633,12 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\r\nimport { User } from '../../dto/user';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.css'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class NavbarComponent {\r\n\r\n  navbarOpen = false;\r\n\r\n  @Input()\r\n  user: User;\r\n\r\n  @Input()\r\n  appTitle: string;\r\n\r\n  @Input()\r\n  urlLogo: string;\r\n\r\n  constructor() { }\r\n\r\n  toggleNavbar() {\r\n    this.navbarOpen = !this.navbarOpen;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, ChangeDetectionStrategy } from '@angular/core';\r\nimport { User } from '../../dto/user';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush,\r\n})\r\nexport class NavbarComponent {\r\n\r\n  navbarOpen = false;\r\n\r\n  @Input()\r\n  user: User;\r\n\r\n  @Input()\r\n  appTitle: string;\r\n\r\n  @Input()\r\n  urlLogo: string;\r\n\r\n  constructor() { }\r\n\r\n  toggleNavbar() {\r\n    this.navbarOpen = !this.navbarOpen;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "div.float-right {\r\n  background-color: #01afec;\r\n}\r\ndiv.float-right:before {\r\n  background: #01afec;\r\n  height: 0;\r\n  border: 26px solid transparent;\r\n\r\n  content: '';\r\n  display: block;\r\n  position: relative;\r\n  left: -26px;\r\n  top: 0;\r\n  width: 0;\r\n  float: left;\r\n  transform: skew(-26deg);\r\n}\r\na.navbar-brand {\r\n  background-color: white;\r\n}\r\n",
-                    "styleUrl": "./navbar.component.css"
+                    "styleUrl": "./navbar.component.scss"
                 }
             ],
             "stylesData": "",
@@ -633,6 +649,100 @@
                 "line": 21
             },
             "templateData": "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0\">\r\n  <a class=\"navbar-brand py-0 px-3\" href=\"#\" style=\"background-color: white\">\r\n    <img height=\"50px\" [src]=\"urlLogo\" />\r\n  </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarMain\" [ngClass]=\"{ 'show': navbarOpen }\">\r\n    <ul class=\"navbar-nav mr-auto px-2\">\r\n      <li class=\"nav-item active\">\r\n        <h5 class=\"mb-0 text-white nav-link\"><span id=\"appTitle\" [innerText]=\"appTitle\"></span></h5>\r\n      </li>\r\n      <li id=\"nav-gestion\" class=\"nav-item\">\r\n        <a class=\"nav-link\">Gestion</a>\r\n      </li>\r\n      <li id=\"nav-import\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur'\">\r\n        <a class=\"nav-link\">Import</a>\r\n      </li>\r\n      <li id=\"nav-suivi\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur' || user?.profil === 'Gestionnaire'\">\r\n        <a class=\"nav-link\">Suivi</a>\r\n      </li>\r\n      <li id=\"nav-admin\" class=\"nav-item\" *ngIf=\"user?.profil === 'Administrateur'\">\r\n        <a class=\"nav-link\">Admin</a>\r\n      </li>\r\n    </ul>\r\n    <div class=\"float-right pr-3\">\r\n      <span class=\"navbar-text text-white\">\r\n        <span class=\"small\">Connecté en tant que </span>\r\n        <span class=\"badge\" [ngClass]=\"{'badge-secondary': user?.profil === 'Basic',\r\n              'badge-success': user?.profil === 'Gestionnaire',\r\n              'badge-primary': user?.profil === 'Directeur',\r\n              'badge-danger': user?.profil === 'Administrateur'}\">\r\n          <span id=\"username\" [innerText]=\"user?.badge\"></span> :\r\n          <span [innerText]=\"user?.prenom\"></span>&nbsp;\r\n          <span [innerText]=\"user?.nom\"></span>\r\n        </span>\r\n        <span class=\"small\"> | <a href=\"?LLO=true\">Déconnexion</a></span>\r\n      </span>\r\n    </div>\r\n  </div>\r\n</nav>\r\n"
+        },
+        {
+            "name": "NavbarUgComponent",
+            "id": "component-NavbarUgComponent-7b9a7f1924ecb5a5cf2710908cededb9",
+            "file": "src/app/comp/navbar-ug/navbar-ug.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-navbar-ug",
+            "styleUrls": [
+                "./navbar-ug.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navbar-ug.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "appTitle",
+                    "line": 17,
+                    "type": "string"
+                },
+                {
+                    "name": "infoConnection",
+                    "line": 24,
+                    "type": "any"
+                },
+                {
+                    "name": "urlLogo",
+                    "line": 20,
+                    "type": "string"
+                },
+                {
+                    "name": "user",
+                    "line": 14,
+                    "type": "User"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "logoutClicked",
+                    "defaultValue": "new EventEmitter()",
+                    "description": "<p>Event lié au click sur le bouton deconnexion : pas de remontée de data dans le $event</p>\n",
+                    "line": 29,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "navbarOpen",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "off",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 35
+                },
+                {
+                    "name": "toggleNavbar",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';\nimport { User } from 'src/app/dto/user';\n\n@Component({\n  selector: 'app-navbar-ug',\n  templateUrl: './navbar-ug.component.html',\n  styleUrls: ['./navbar-ug.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class NavbarUgComponent {\n  navbarOpen = false;\n\n  @Input()\n  user: User;\n\n  @Input()\n  appTitle: string;\n\n  @Input()\n  urlLogo: string;\n\n  // TODO: remove any type\n  @Input()\n  infoConnection: any;\n\n  /**\n   * Event lié au click sur le bouton deconnexion : pas de remontée de data dans le $event\n   */\n  @Output() logoutClicked = new EventEmitter();\n\n  toggleNavbar() {\n    this.navbarOpen = !this.navbarOpen;\n  }\n\n  off(): void {\n    this.logoutClicked.emit();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "div.float-right {\r\n  background-color: #01afec;\r\n}\r\ndiv.float-right:before {\r\n  background: #01afec;\r\n  height: 0;\r\n  border: 26px solid transparent;\r\n\r\n  content: '';\r\n  display: block;\r\n  position: relative;\r\n  left: -26px;\r\n  top: 0;\r\n  width: 0;\r\n  float: left;\r\n  transform: skew(-26deg);\r\n}\r\na.navbar-brand {\r\n  background-color: white;\r\n}\r\n",
+                    "styleUrl": "./navbar-ug.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0\">\n  <a class=\"navbar-brand py-0 px-3\" href=\"#\" style=\"background-color: white\">\n    <img height=\"50px\" [src]=\"urlLogo\" />\n  </a>\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarMain\" [ngClass]=\"{ 'show': navbarOpen }\">\n    <ul class=\"navbar-nav px-2\">\n      <li class=\"nav-item active\">\n        <h5 class=\"mb-0 text-white nav-link\"><span id=\"appTitle\" [innerText]=\"appTitle\"></span></h5>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\">Accueil</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\">Site de travail</a>\n      </li>\n    </ul>\n    <form class=\"form-inline mr-auto px-2\">\n      <span class=\"navbar-text px-2\">\n        Gérer les sinistres\n      </span>\n      <button class=\"btn btn-sm btn-outline-light ml-2\" type=\"button\">1</button>\n      <button disabled class=\"btn btn-sm btn-outline-light ml-2\" type=\"button\">2</button>\n    </form>\n\n    <div class=\"float-right pr-3\">\n      <span class=\"navbar-text text-white my-1\">\n        <span class=\"small mr-2\">\n          <span class=\"mr-2\" id=\"sg\" [innerText]=\"user?.siteGestion\"></span>\n          <span class=\"mx-1\">/</span>\n          <span class=\"mr-2\" id=\"po\" [innerText]=\"user?.posteOp\"></span>\n          <span id=\"sglabel\" [innerText]=\"user?.sgLabel\"></span>\n        </span>\n        <span class=\"badge mr-2\" [ngClass]=\"{'badge-secondary': user?.profil === 'Basic',\n              'badge-success': user?.profil === 'Gestionnaire',\n              'badge-primary': user?.profil === 'Directeur',\n              'badge-danger': user?.profil === 'Administrateur'}\">\n          <span id=\"username\" [innerText]=\"user?.badge\"></span> :\n          <span [innerText]=\"user?.prenom\"></span>&nbsp;\n          <span [innerText]=\"user?.nom\"></span>\n        </span>\n        <a href=\"\" (click)=\"off();$event.preventDefault()\">\n          <fa-icon icon=\"power-off\"></fa-icon>\n        </a>\n      </span>\n    </div>\n  </div>\n</nav>\n<div *ngIf=\"infoConnection\" class=\"d-flex justify-content-end\">\n  <span class=\"badge badge-light\"><span class=\"text-secondary\">dernier login :\n      {{infoConnection?.lastLogin | date:'dd/MM/yyyy hh:mm'}}</span> |\n    {{infoConnection?.currentTime | date:'dd/MM/yyyy hh:mm'}}</span>\n</div>\n"
         }
     ],
     "modules": [
@@ -660,6 +770,9 @@
                         },
                         {
                             "name": "NavbarComponent"
+                        },
+                        {
+                            "name": "NavbarUgComponent"
                         }
                     ]
                 },
@@ -702,7 +815,7 @@
                 "subtype": "variable",
                 "file": "src/stories/1-Button.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    btnClicked: action('This was clicked OMG'),\n  },\n})"
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    clickBtn: action('Action liée au bouton'),\n  },\n})"
             },
             {
                 "name": "ButtonWithLinkToAnotherStory",
@@ -737,12 +850,28 @@
                 "defaultValue": "{\n  production: false\n}"
             },
             {
+                "name": "infoConnection",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/4-Navbar.stories.ts",
+                "type": "object",
+                "defaultValue": "{\r\n  lastLogin: 1582820287, currentTime: Date.now()\r\n}"
+            },
+            {
                 "name": "NavbarTemplate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/4-Navbar.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: user,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Storybook angular'\r\n  }\r\n})"
+                "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: { ...user, profil: select('Rôle', optionsRoles, 'Basic') },\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Application'\r\n  }\r\n})"
+            },
+            {
+                "name": "NavbarugTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/4-Navbar.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  template: `<app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\"\r\n    [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\" (logoutClicked)=\"clickBtn()\">\r\n  </app-navbar-ug>`,\r\n  props: {\r\n    user: {\r\n      ...user,\r\n      siteGestion: text('Site gestion', 'SG26'),\r\n      posteOp: text('Poste opérationnel', 'SG12SALI')\r\n    },\r\n    infoConnection,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Application',\r\n    clickBtn: action('Action de déconnexion')\r\n  }\r\n})"
             },
             {
                 "name": "optionsCouleur",
@@ -751,6 +880,22 @@
                 "file": "src/stories/1-Button.stories.ts",
                 "type": "[]",
                 "defaultValue": "['', 'primary', 'secondary', 'warning', 'success', 'danger', 'outline-primary', 'outline-secondary']"
+            },
+            {
+                "name": "optionsIcone",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/1-Button.stories.ts",
+                "type": "[]",
+                "defaultValue": "['', 'search', 'check', 'power-off']"
+            },
+            {
+                "name": "optionsRoles",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/4-Navbar.stories.ts",
+                "type": "[]",
+                "defaultValue": "['Basic', 'Gestionnaire', 'Directeur', 'Administrateur']"
             },
             {
                 "name": "optionsTaille",
@@ -766,7 +911,7 @@
                 "subtype": "variable",
                 "file": "src/stories/utils.ts",
                 "type": "object",
-                "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(faCheck, faSearch);\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+                "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
             },
             {
                 "name": "require",
@@ -797,7 +942,7 @@
                 "subtype": "variable",
                 "file": "src/stories/1-Button.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: select('Icône', optionsIcone, 'search'),\n  },\n})"
             },
             {
                 "name": "TextTemplate",
@@ -805,7 +950,7 @@
                 "subtype": "variable",
                 "file": "src/stories/1-Button.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\"></app-button>`\n})"
+                "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clicked()\"></app-button>`,\n  props: {\n    clicked: action('Action liée au bouton via template')\n  }\n})"
             },
             {
                 "name": "user",
@@ -813,7 +958,7 @@
                 "subtype": "variable",
                 "file": "src/stories/4-Navbar.stories.ts",
                 "type": "object",
-                "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\r\n  habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
+                "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\r\n  posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
             }
         ],
         "functions": [],
@@ -845,7 +990,7 @@
                     "subtype": "variable",
                     "file": "src/stories/1-Button.stories.ts",
                     "type": "",
-                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    btnClicked: action('This was clicked OMG'),\n  },\n})"
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Avec action',\n    color: 'success',\n    clickBtn: action('Action liée au bouton'),\n  },\n})"
                 },
                 {
                     "name": "ButtonWithLinkToAnotherStory",
@@ -864,6 +1009,14 @@
                     "defaultValue": "['', 'primary', 'secondary', 'warning', 'success', 'danger', 'outline-primary', 'outline-secondary']"
                 },
                 {
+                    "name": "optionsIcone",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/1-Button.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "['', 'search', 'check', 'power-off']"
+                },
+                {
                     "name": "optionsTaille",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -877,7 +1030,7 @@
                     "subtype": "variable",
                     "file": "src/stories/1-Button.stories.ts",
                     "type": "",
-                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: text('Icône', 'check'),\n  },\n})"
+                    "defaultValue": "() => ({\n  component: ButtonComponent,\n  props: {\n    label: 'Hello Button',\n    size: select('Taille', optionsTaille, null),\n    color: select('Couleur', optionsCouleur, 'primary'),\n    icon: select('Icône', optionsIcone, 'search'),\n  },\n})"
                 },
                 {
                     "name": "TextTemplate",
@@ -885,7 +1038,7 @@
                     "subtype": "variable",
                     "file": "src/stories/1-Button.stories.ts",
                     "type": "",
-                    "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clickBtn($event)\"></app-button>`\n})"
+                    "defaultValue": "() => ({\n  template: `<app-button color=\"primary\" icon=\"check\" label=\"Bouton\" (btnClicked)=\"clicked()\"></app-button>`,\n  props: {\n    clicked: action('Action liée au bouton via template')\n  }\n})"
                 }
             ],
             "src/test.ts": [
@@ -927,12 +1080,36 @@
             ],
             "src/stories/4-Navbar.stories.ts": [
                 {
+                    "name": "infoConnection",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/4-Navbar.stories.ts",
+                    "type": "object",
+                    "defaultValue": "{\r\n  lastLogin: 1582820287, currentTime: Date.now()\r\n}"
+                },
+                {
                     "name": "NavbarTemplate",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/4-Navbar.stories.ts",
                     "type": "",
-                    "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: user,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Storybook angular'\r\n  }\r\n})"
+                    "defaultValue": "() => ({\r\n  template: `<app-navbar [user]=\"user\" [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\"></app-navbar>`,\r\n  props: {\r\n    user: { ...user, profil: select('Rôle', optionsRoles, 'Basic') },\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Application'\r\n  }\r\n})"
+                },
+                {
+                    "name": "NavbarugTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/4-Navbar.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  template: `<app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\"\r\n    [appTitle]=\"appTitle\" [urlLogo]=\"urlLogo\" (logoutClicked)=\"clickBtn()\">\r\n  </app-navbar-ug>`,\r\n  props: {\r\n    user: {\r\n      ...user,\r\n      siteGestion: text('Site gestion', 'SG26'),\r\n      posteOp: text('Poste opérationnel', 'SG12SALI')\r\n    },\r\n    infoConnection,\r\n    urlLogo: 'assets/img/logosma_accueil.png',\r\n    appTitle: 'Application',\r\n    clickBtn: action('Action de déconnexion')\r\n  }\r\n})"
+                },
+                {
+                    "name": "optionsRoles",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/4-Navbar.stories.ts",
+                    "type": "[]",
+                    "defaultValue": "['Basic', 'Gestionnaire', 'Directeur', 'Administrateur']"
                 },
                 {
                     "name": "user",
@@ -940,7 +1117,7 @@
                     "subtype": "variable",
                     "file": "src/stories/4-Navbar.stories.ts",
                     "type": "object",
-                    "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG1'],\r\n  habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
+                    "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\r\n  posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
                 }
             ],
             "src/stories/utils.ts": [
@@ -950,7 +1127,7 @@
                     "subtype": "variable",
                     "file": "src/stories/utils.ts",
                     "type": "object",
-                    "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(faCheck, faSearch);\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
                 }
             ],
             "src/stories/3-Modal.stories.ts": [
@@ -988,7 +1165,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -1019,6 +1196,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/comp/navbar-ug/navbar-ug.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarUgComponent",
+                "coveragePercent": 11,
+                "coverageCount": "1/9",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/comp/navbar/navbar.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1033,7 +1219,7 @@
                 "linktype": "interface",
                 "name": "User",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -1091,6 +1277,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "optionsCouleur",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/1-Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "optionsIcone",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1160,7 +1356,37 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "infoConnection",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/4-Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "NavbarTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/4-Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "NavbarugTemplate",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/4-Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "optionsRoles",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
