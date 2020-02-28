@@ -1,0 +1,22 @@
+<div class="card">
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th (click)="sortTable({columnName: 'name', sortDirection: 'asc'})" scope="col">Country</th>
+        <th (click)="sortTable({columnName: 'area', sortDirection: 'asc'})" scope="col">Area</th>
+        <th (click)="sortTable({columnName: 'population', sortDirection: 'asc'})" scope="col">Population</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let country of (countries$ | async) | slice:0:3 | orderBy: order; index as i">
+        <td>{{ country.name }}</td>
+        <td>{{country.area}}</td>
+        <td>{{country.population}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card-footer">
+    <ngb-pagination maxSize="5" [rotate]="true" [boundaryLinks]="true" pageSize="5" [collectionSize]="'6'" size="sm"
+      (pageChange)="changePagination()"></ngb-pagination>
+  </div>
+</div>
