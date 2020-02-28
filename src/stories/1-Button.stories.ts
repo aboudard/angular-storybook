@@ -21,13 +21,14 @@ export default {
 
 const optionsTaille = ['', 'sm', 'lg'];
 const optionsCouleur = ['', 'primary', 'secondary', 'warning', 'success', 'danger', 'outline-primary', 'outline-secondary'];
+const optionsIcone = ['', 'search', 'check', 'power-off'];
 export const Text = () => ({
   component: ButtonComponent,
   props: {
     label: 'Hello Button',
     size: select('Taille', optionsTaille, null),
     color: select('Couleur', optionsCouleur, 'primary'),
-    icon: text('Icône', 'check'),
+    icon: select('Icône', optionsIcone, 'search'),
   },
 });
 
@@ -36,7 +37,10 @@ Text.story = {
 };
 
 export const TextTemplate = () => ({
-  template: `<app-button color="primary" icon="check" label="Bouton" (btnClicked)="clickBtn($event)"></app-button>`
+  template: `<app-button color="primary" icon="check" label="Bouton" (btnClicked)="clicked()"></app-button>`,
+  props: {
+    clicked: action('Action liée au bouton via template')
+  }
 });
 TextTemplate.story = {
   name: 'Bouton via template'
@@ -47,7 +51,7 @@ export const ButtonWithAction = () => ({
   props: {
     label: 'Avec action',
     color: 'success',
-    btnClicked: action('This was clicked OMG'),
+    clickBtn: action('Action liée au bouton'),
   },
 });
 

@@ -2,21 +2,21 @@
 <div class="container-fluid border">
   <h2>Angular Storybook - Bootstrap</h2>
   <app-card [type]="'primary'" [color]="'white'" [header]="'Card component'" [title]="'Titre du contenu de la carte'"
-    (btnClicked)="clickBtn($event)"
-    [content]="'With supporting text below as a natural lead-in to additional content.'"></app-card>
+    (btnClicked)="clickBtn()" [content]="'With supporting text below as a natural lead-in to additional content.'">
+  </app-card>
 
   <hr>
 
   <div class="p-2">
     <span class="mr-2">
-      <app-button [color]="'primary'" [icon]="'check'" [label]="'Bouton'" (btnClicked)="clickBtn($event)"></app-button>
+      <app-button [color]="'primary'" [icon]="'check'" [label]="'Bouton'" (btnClicked)="clickBtn()"></app-button>
     </span>
     <span class="mr-2">
-      <app-button [color]="'secondary'" [icon]="'search'" [label]="'Autre'" (btnClicked)="clickBtn($event)">
+      <app-button [color]="'secondary'" [icon]="'search'" [label]="'Autre'" (btnClicked)="clickBtn()">
       </app-button>
     </span>
     <span class="mr-2">
-      <app-button [color]="'warning'" [size]="'sm'" [label]="'Petit bouton'" (btnClicked)="clickBtn($event)">
+      <app-button [color]="'warning'" [size]="'sm'" [label]="'Petit bouton'" (btnClicked)="clickBtn()">
       </app-button>
     </span>
   </div>
@@ -27,7 +27,8 @@
 
   <hr>
 
-  <app-navbar-ug [infoConnection]="infoConnection" [user]="user" [appTitle]="titleReglement" [urlLogo]="urlLogo">
+  <app-navbar-ug [infoConnection]="infoConnection" [user]="user" [appTitle]="titleReglement"
+    (logoutClicked)="clickBtn()" [urlLogo]="urlLogo">
   </app-navbar-ug>
 
 </div>

@@ -41,14 +41,14 @@
           <span [innerText]="user?.prenom"></span>&nbsp;
           <span [innerText]="user?.nom"></span>
         </span>
-        <a href="" (click)="off()">
+        <a href="" (click)="off();$event.preventDefault()">
           <fa-icon icon="power-off"></fa-icon>
         </a>
       </span>
     </div>
   </div>
 </nav>
-<div class="d-flex justify-content-end">
+<div *ngIf="infoConnection" class="d-flex justify-content-end">
   <span class="badge badge-light"><span class="text-secondary">dernier login :
       {{infoConnection?.lastLogin | date:'dd/MM/yyyy hh:mm'}}</span> |
     {{infoConnection?.currentTime | date:'dd/MM/yyyy hh:mm'}}</span>

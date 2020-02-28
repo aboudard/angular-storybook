@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 
 /**
  * Composant bouton avec texte, couleur, taille et icône paramétrables

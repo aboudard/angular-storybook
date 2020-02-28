@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     this.utilsService.initFaIcons();
   }
 
-  clickBtn(flag: boolean): void {
+  clickBtn(): void {
     console.log('test');
   }
 }

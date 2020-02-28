@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/dto/user';
 
 @Component({
@@ -23,14 +23,17 @@ export class NavbarUgComponent {
   @Input()
   infoConnection: any;
 
-  constructor() { }
+  /**
+   * Event lié au click sur le bouton deconnexion : pas de remontée de data dans le $event
+   */
+  @Output() logoutClicked = new EventEmitter();
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
 
   off(): void {
-    console.log('off');
+    this.logoutClicked.emit();
   }
 
 }
