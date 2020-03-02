@@ -17,3 +17,6 @@ Run the storybook local app :
 ```bash
 npm run storybook
 ```
+
+## Deployed version on github pages
+https://aboudard.github.io/angular-storybook/
