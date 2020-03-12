@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import { ButtonComponent } from 'src/app/comp/button/button.component';
 import { moduleMetadata } from '@storybook/angular';
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { select, withKnobs } from '@storybook/addon-knobs';
 import { provideFa } from './utils';
 import md from './1-Button.md';
 

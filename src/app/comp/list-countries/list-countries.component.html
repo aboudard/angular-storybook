@@ -1,22 +1,62 @@
 <div class="card">
-  <table class="table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th (click)="sortTable({columnName: 'name', sortDirection: 'asc'})" scope="col">Country</th>
-        <th (click)="sortTable({columnName: 'area', sortDirection: 'asc'})" scope="col">Area</th>
-        <th (click)="sortTable({columnName: 'population', sortDirection: 'asc'})" scope="col">Population</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let country of (countries$ | async) | slice:0:3 | orderBy: order; index as i">
-        <td>{{ country.name }}</td>
-        <td>{{country.area}}</td>
-        <td>{{country.population}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="card-footer">
-    <ngb-pagination maxSize="5" [rotate]="true" [boundaryLinks]="true" pageSize="5" [collectionSize]="'6'" size="sm"
-      (pageChange)="changePagination()"></ngb-pagination>
-  </div>
+  <ng-container *ngIf="countries$ | async as countries; else loadingCountries">
+    <form [formGroup]="formCountries">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">
+              <app-sortable-column columnName="name" (clickSort)="sortTable($event)">Country</app-sortable-column>
+            </th>
+            <th scope="col">
+              <app-sortable-column columnName="area" (clickSort)="sortTable($event)">Area</app-sortable-column>
+            </th>
+            <th scope="col">
+              <app-sortable-column columnName="population" (clickSort)="sortTable($event)">Population
+              </app-sortable-column>
+            </th>
+          </tr>
+          <tr>
+            <th><input class="form-control form-control-sm" type="text" name="name" formControlName="name"></th>
+            <th><input class="form-control form-control-sm" type="text" name="area" formControlName="area"></th>
+            <th><input class="form-control form-control-sm" type="text" name="population" formControlName="population">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of countries
+          | filtre:false:false:filtres
+          | orderBy: order:reverse
+          | slice:start:end; index as i">
+            <td>{{country.name}}</td>
+            <td>{{country.area}}</td>
+            <td>{{country.population}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col">
+            <select class="custom-select custom-select-sm w-auto" [(ngModel)]="nbByPage"
+              [ngModelOptions]="{standalone: true}" (change)="changeNbByPage()">
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+            </select>
+          </div>
+          <div class="col">
+            <ngb-pagination [(page)]="page" [rotate]="true" [boundaryLinks]="true" [pageSize]="nbByPage"
+              [collectionSize]="countries.length" size="sm" (pageChange)="changePagination(page)"></ngb-pagination>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </ng-container>
+  <ng-template #loadingCountries>
+    <div class="m-4 alert alert-primary" role="alert">
+      Chargement ...
+    </div>
+  </ng-template>
 </div>

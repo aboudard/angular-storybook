@@ -10,6 +10,9 @@ import { NavbarComponent } from './comp/navbar/navbar.component';
 import { NavbarUgComponent } from './comp/navbar-ug/navbar-ug.component';
 import { ListCountriesComponent } from './comp/list-countries/list-countries.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { SortableColumnComponent } from './comp/sortable-column/sortable-column.component';
+import { FiltrePipe } from './shared/pipes/filtre.pipe';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,16 @@ import { OrderModule } from 'ngx-order-pipe';
     CardComponent,
     ButtonComponent,
     ModalPromptComponent,
+    SortableColumnComponent,
+    FiltrePipe,
     NavbarComponent,
     NavbarUgComponent,
     ListCountriesComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     FontAwesomeModule,
     NgbModule,
     OrderModule

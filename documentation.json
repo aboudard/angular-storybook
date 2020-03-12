@@ -1,6 +1,263 @@
 {
-    "pipes": [],
+    "pipes": [
+        {
+            "name": "FiltrePipe",
+            "id": "pipe-FiltrePipe-03957bba509a974da4adbaf045dba4ab",
+            "file": "src/app/shared/pipes/filtre.pipe.ts",
+            "type": "pipe",
+            "description": "",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "checkComplexType",
+                    "args": [
+                        {
+                            "name": "values",
+                            "type": ""
+                        },
+                        {
+                            "name": "filter",
+                            "type": ""
+                        },
+                        {
+                            "name": "start",
+                            "type": ""
+                        },
+                        {
+                            "name": "exact",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 16,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "values",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "filter",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "start",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "exact",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "checkValue",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": ""
+                        },
+                        {
+                            "name": "key",
+                            "type": ""
+                        },
+                        {
+                            "name": "value",
+                            "type": ""
+                        },
+                        {
+                            "name": "start",
+                            "type": ""
+                        },
+                        {
+                            "name": "exact",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 40,
+                    "modifierKind": [
+                        112
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "key",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "start",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "exact",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "items",
+                            "type": "any[]"
+                        },
+                        {
+                            "name": "start",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "exact",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "filter",
+                            "type": "any",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 9,
+                    "jsdoctags": [
+                        {
+                            "name": "items",
+                            "type": "any[]",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "start",
+                            "type": "boolean",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "exact",
+                            "type": "boolean",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "filter",
+                            "type": "any",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "pure": true,
+            "ngname": "filtre",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'filtre',\r\n  pure: true\r\n})\r\nexport class FiltrePipe implements PipeTransform {\r\n\r\n    transform(items: any[], start: boolean, exact: boolean, filter?: any): any {\r\n        // clean undefined object properties\r\n        Object.keys(filter).forEach(key => !filter[key] && delete filter[key]);\r\n\r\n        return this.checkComplexType(items, filter, start, exact);\r\n    }\r\n\r\n    private checkComplexType(values, filter, start, exact): any {\r\n        if (!values || !filter || Object.entries(filter).length === 0) {\r\n            return values;\r\n        }\r\n        const result = [];\r\n\r\n        // find in all records\r\n        values.forEach(row => {\r\n            let match = false;\r\n            // find in all filters in the object of filters\r\n            for (const [key, value] of Object.entries(filter)) {\r\n                match = this.checkValue(row, key, value, start, exact);\r\n                if (!match) {\r\n                    return false;\r\n                }\r\n            }\r\n            if (match) {\r\n                result.push(row); // add row in return\r\n            }\r\n        });\r\n\r\n        return result;\r\n    }\r\n\r\n    private checkValue(item, key, value, start, exact): boolean {\r\n        if (!item || typeof item[key] === 'undefined' || !key || !value || value === '') {\r\n            return true;\r\n        }\r\n        const itemVal = item[key].toString().toLowerCase();\r\n        const valueVal = value.toString().toLowerCase();\r\n        if (exact) {\r\n          return itemVal === valueVal;\r\n        } else {\r\n          const expectedVal = start ? 0 : -1;\r\n          return start ? itemVal.indexOf(valueVal) === expectedVal : itemVal.indexOf(valueVal) !== expectedVal;\r\n        }\r\n\r\n    }\r\n\r\n}\r\n"
+        }
+    ],
     "interfaces": [
+        {
+            "name": "Country",
+            "id": "interface-Country-2844ab45460a2c068d1e19997014807f",
+            "file": "src/app/dto/country.ts",
+            "type": "interface",
+            "sourceCode": "export interface Country {\r\n  name: string;\r\n  area: number;\r\n  population: number;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "area",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "population",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "SortData",
+            "id": "interface-SortData-83f47edcf9ac22c8b6edea926b30ec1d",
+            "file": "src/app/dto/sort-data.ts",
+            "type": "interface",
+            "sourceCode": "export interface SortData {\r\n  columnName: string;\r\n  sortDirection: string;\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "columnName",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "sortDirection",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
         {
             "name": "User",
             "id": "interface-User-47db2412a64b78a4d678593494807346",
@@ -79,8 +336,67 @@
     ],
     "injectables": [
         {
+            "name": "SortService",
+            "id": "injectable-SortService-edf1080d8a0a6d2ebbdecd3e86ea77a9",
+            "file": "src/app/shared/sort.service.ts",
+            "properties": [
+                {
+                    "name": "columnSorted$",
+                    "defaultValue": "this.columnSortedSource.asObservable()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "columnSortedSource",
+                    "defaultValue": "new Subject<SortData>()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "columnSorted",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "SortData"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "SortData",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { Subject } from 'rxjs';\r\nimport { SortData } from '../dto/sort-data';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class SortService {\r\n\r\n  private columnSortedSource = new Subject<SortData>();\r\n  columnSorted$ = this.columnSortedSource.asObservable();\r\n\r\n  constructor() { }\r\n\r\n  columnSorted(event: SortData) {\r\n    this.columnSortedSource.next(event);\r\n  }\r\n\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 11
+            },
+            "type": "injectable"
+        },
+        {
             "name": "UtilsService",
-            "id": "injectable-UtilsService-abea6f8e9f5614dbb0bc198ff6db617f",
+            "id": "injectable-UtilsService-b93349117cff403971cd7201ef08a0e1",
             "file": "src/app/shared/utils.service.ts",
             "properties": [],
             "methods": [
@@ -94,7 +410,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch, faPowerOff\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch, faPowerOff\n    );\n  }\n\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown\n    );\n  }\n\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -142,6 +458,142 @@
                     "returnType": "Promise<unknown>",
                     "typeParameters": [],
                     "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "SortableComponent",
+            "id": "class-SortableComponent-382d90e7b16e1627a033180303f3d94c",
+            "file": "src/app/classes/sortable/sortable.component.ts",
+            "type": "class",
+            "sourceCode": "import { SortData } from 'src/app/dto/sort-data';\r\n\r\nexport class SortableComponent {\r\n\r\n  // pagination\r\n  page = 1;\r\n  start = 0;\r\n  end = 3;\r\n  nbByPage = 3;\r\n  // tri\r\n  order = null;\r\n  reverse = false;\r\n\r\n  /**\r\n   * Tri de la liste via la colonne sur laquelle on vient de cliquer\r\n   * @param champs: nom du champ et direction de tri\r\n   */\r\n  sortTable(champs: SortData): void {\r\n    // tri\r\n    this.reverse = (champs.sortDirection !== 'asc');\r\n    this.order = champs.columnName;\r\n  }\r\n\r\n  /**\r\n   * Changement de pagination\r\n   * @param page: le numéro de page envoyé par la barre de pagination\r\n   */\r\n  changePagination(page: number): void {\r\n    this.start = (page - 1) * this.nbByPage;\r\n    this.end = this.start + this.nbByPage;\r\n  }\r\n\r\n  changeNbByPage(): void {\r\n    this.nbByPage = parseInt(this.nbByPage.toString(), 0);\r\n    this.page = 1;\r\n    this.changePagination(1);\r\n  }\r\n\r\n}\r\n",
+            "properties": [
+                {
+                    "name": "end",
+                    "defaultValue": "3",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                },
+                {
+                    "name": "nbByPage",
+                    "defaultValue": "3",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "order",
+                    "defaultValue": "null",
+                    "type": "null",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "page",
+                    "defaultValue": "1",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "reverse",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "start",
+                    "defaultValue": "0",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "methods": [
+                {
+                    "name": "changeNbByPage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33
+                },
+                {
+                    "name": "changePagination",
+                    "args": [
+                        {
+                            "name": "page",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "description": "<p>Changement de pagination</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 548,
+                                "end": 552,
+                                "flags": 0,
+                                "escapedText": "page"
+                            },
+                            "type": "number",
+                            "tagName": {
+                                "pos": 542,
+                                "end": 547,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>: le numéro de page envoyé par la barre de pagination</p>\n"
+                        }
+                    ]
+                },
+                {
+                    "name": "sortTable",
+                    "args": [
+                        {
+                            "name": "champs",
+                            "type": "SortData"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "description": "<p>Tri de la liste via la colonne sur laquelle on vient de cliquer</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 300,
+                                "end": 306,
+                                "flags": 0,
+                                "escapedText": "champs"
+                            },
+                            "type": "SortData",
+                            "tagName": {
+                                "pos": 294,
+                                "end": 299,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>: nom du champ et direction de tri</p>\n"
+                        }
+                    ]
                 }
             ],
             "indexSignatures": [],
@@ -270,7 +722,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n<div class=\"container-fluid border\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn()\" [content]=\"'With supporting text below as a natural lead-in to additional content.'\">\n  </app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn()\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\" [appTitle]=\"titleReglement\"\n    (logoutClicked)=\"clickBtn()\" [urlLogo]=\"urlLogo\">\n  </app-navbar-ug>\n\n</div>\n"
+            "templateData": "<app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n<div class=\"container-fluid border\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn()\" [content]=\"'With supporting text below as a natural lead-in to additional content.'\">\n  </app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn()\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\" [appTitle]=\"titleReglement\"\n    (logoutClicked)=\"clickBtn()\" [urlLogo]=\"urlLogo\">\n  </app-navbar-ug>\n\n  <hr>\n\n  <app-list-countries></app-list-countries>\n\n</div>\n"
         },
         {
             "name": "ButtonComponent",
@@ -456,6 +908,220 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"card m-2\">\n  <div class=\"card-header\" [ngClass]=\"['bg-'+type, 'text-'+color]\"><span [innerText]=\"header\"></span></div>\n  <div class=\"card-body\">\n    <h5 class=\"card-title\" [innerText]=\"title\"></h5>\n    <p class=\"card-text\" [innerText]=\"content\"></p>\n  </div>\n  <div class=\"card-footer\">\n    <app-button label=\"Click me\" icon=\"search\" color=\"success\" (btnClicked)=\"clickBtn()\" size=\"sm\"></app-button>\n  </div>\n</div>\n"
+        },
+        {
+            "name": "ListCountriesComponent",
+            "id": "component-ListCountriesComponent-3eb76fb42642609b398fbb944135f34f",
+            "file": "src/app/comp/list-countries/list-countries.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-list-countries",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./list-countries.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "countries$",
+                    "defaultValue": "of([\n    {\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ])",
+                    "type": "Observable<Country[]>",
+                    "optional": false,
+                    "description": "<p>La liste de données\nPeut également être déclarée en &#39;@Input&#39;</p>\n",
+                    "line": 21
+                },
+                {
+                    "name": "formCountries",
+                    "type": "FormGroup",
+                    "optional": false,
+                    "description": "<p>Le formulaire de filtre</p>\n",
+                    "line": 16
+                },
+                {
+                    "name": "end",
+                    "defaultValue": "3",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "nbByPage",
+                    "defaultValue": "3",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "order",
+                    "defaultValue": "null",
+                    "type": "null",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "page",
+                    "defaultValue": "1",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 6,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "reverse",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "start",
+                    "defaultValue": "0",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 7,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "changeNbByPage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33,
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "changePagination",
+                    "args": [
+                        {
+                            "name": "page",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "description": "<p>Changement de pagination</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 548,
+                                "end": 552,
+                                "flags": 0,
+                                "escapedText": "page"
+                            },
+                            "type": "number",
+                            "tagName": {
+                                "pos": 542,
+                                "end": 547,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>: le numéro de page envoyé par la barre de pagination</p>\n"
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                },
+                {
+                    "name": "sortTable",
+                    "args": [
+                        {
+                            "name": "champs",
+                            "type": "SortData"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "description": "<p>Tri de la liste via la colonne sur laquelle on vient de cliquer</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 300,
+                                "end": 306,
+                                "flags": 0,
+                                "escapedText": "champs"
+                            },
+                            "type": "SortData",
+                            "tagName": {
+                                "pos": 294,
+                                "end": 299,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>: nom du champ et direction de tri</p>\n"
+                        }
+                    ],
+                    "inheritance": {
+                        "file": "SortableComponent"
+                    }
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Observable, of } from 'rxjs';\nimport { Country } from 'src/app/dto/country';\nimport { SortableComponent } from 'src/app/classes/sortable/sortable.component';\nimport { FormGroup, FormControl } from '@angular/forms';\n\n@Component({\n  selector: 'app-list-countries',\n  templateUrl: './list-countries.component.html'\n})\nexport class ListCountriesComponent extends SortableComponent {\n\n  /**\n   * Le formulaire de filtre\n   */\n  formCountries: FormGroup;\n  /**\n   * La liste de données\n   * Peut également être déclarée en '@Input'\n   */\n  countries$: Observable<Country[]> = of([\n    {\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ]);\n\n  /**\n   * Construction du formulaire de filtre\n   */\n  constructor() {\n    super();\n    this.formCountries = new FormGroup({\n      name: new FormControl(''),\n      area: new FormControl(''),\n      population: new FormControl('')\n    });\n  }\n\n  /**\n   * Getter de composant pour injecter les données du formulaire dans le pipe de filtre\n   */\n  get filtres(): any {\n    return this.formCountries.value;\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "<p>Construction du formulaire de filtre</p>\n",
+                "args": [],
+                "line": 62
+            },
+            "extends": "SortableComponent",
+            "accessors": {
+                "filtres": {
+                    "name": "filtres",
+                    "getSignature": {
+                        "name": "filtres",
+                        "type": "any",
+                        "returnType": "any",
+                        "line": 79,
+                        "description": "<p>Getter de composant pour injecter les données du formulaire dans le pipe de filtre</p>\n"
+                    }
+                }
+            },
+            "templateData": "<div class=\"card\">\n  <ng-container *ngIf=\"countries$ | async as countries; else loadingCountries\">\n    <form [formGroup]=\"formCountries\">\n      <table class=\"table table-striped\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"name\" (clickSort)=\"sortTable($event)\">Country</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"area\" (clickSort)=\"sortTable($event)\">Area</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"population\" (clickSort)=\"sortTable($event)\">Population\n              </app-sortable-column>\n            </th>\n          </tr>\n          <tr>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"name\" formControlName=\"name\"></th>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"area\" formControlName=\"area\"></th>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"population\" formControlName=\"population\">\n            </th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let country of countries\n          | filtre:false:false:filtres\n          | orderBy: order:reverse\n          | slice:start:end; index as i\">\n            <td>{{country.name}}</td>\n            <td>{{country.area}}</td>\n            <td>{{country.population}}</td>\n          </tr>\n        </tbody>\n      </table>\n      <div class=\"card-footer\">\n        <div class=\"row\">\n          <div class=\"col\">\n            <select class=\"custom-select custom-select-sm w-auto\" [(ngModel)]=\"nbByPage\"\n              [ngModelOptions]=\"{standalone: true}\" (change)=\"changeNbByPage()\">\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n              <option value=\"10\">10</option>\n              <option value=\"20\">20</option>\n              <option value=\"25\">25</option>\n            </select>\n          </div>\n          <div class=\"col\">\n            <ngb-pagination [(page)]=\"page\" [rotate]=\"true\" [boundaryLinks]=\"true\" [pageSize]=\"nbByPage\"\n              [collectionSize]=\"countries.length\" size=\"sm\" (pageChange)=\"changePagination(page)\"></ngb-pagination>\n          </div>\n        </div>\n\n      </div>\n    </form>\n  </ng-container>\n  <ng-template #loadingCountries>\n    <div class=\"m-4 alert alert-primary\" role=\"alert\">\n      Chargement ...\n    </div>\n  </ng-template>\n</div>\n"
         },
         {
             "name": "ModalPromptComponent",
@@ -743,6 +1409,114 @@
             ],
             "stylesData": "",
             "templateData": "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary py-0 px-0 mb-0\">\n  <a class=\"navbar-brand py-0 px-3\" href=\"#\" style=\"background-color: white\">\n    <img height=\"50px\" [src]=\"urlLogo\" />\n  </a>\n  <button class=\"navbar-toggler\" type=\"button\" (click)=\"toggleNavbar()\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarMain\" [ngClass]=\"{ 'show': navbarOpen }\">\n    <ul class=\"navbar-nav px-2\">\n      <li class=\"nav-item active\">\n        <h5 class=\"mb-0 text-white nav-link\"><span id=\"appTitle\" [innerText]=\"appTitle\"></span></h5>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\">Accueil</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\">Site de travail</a>\n      </li>\n    </ul>\n    <form class=\"form-inline mr-auto px-2\">\n      <span class=\"navbar-text px-2\">\n        Gérer les sinistres\n      </span>\n      <button class=\"btn btn-sm btn-outline-light ml-2\" type=\"button\">1</button>\n      <button disabled class=\"btn btn-sm btn-outline-light ml-2\" type=\"button\">2</button>\n    </form>\n\n    <div class=\"float-right pr-3\">\n      <span class=\"navbar-text text-white my-1\">\n        <span class=\"small mr-2\">\n          <span class=\"mr-2\" id=\"sg\" [innerText]=\"user?.siteGestion\"></span>\n          <span class=\"mx-1\">/</span>\n          <span class=\"mr-2\" id=\"po\" [innerText]=\"user?.posteOp\"></span>\n          <span id=\"sglabel\" [innerText]=\"user?.sgLabel\"></span>\n        </span>\n        <span class=\"badge mr-2\" [ngClass]=\"{'badge-secondary': user?.profil === 'Basic',\n              'badge-success': user?.profil === 'Gestionnaire',\n              'badge-primary': user?.profil === 'Directeur',\n              'badge-danger': user?.profil === 'Administrateur'}\">\n          <span id=\"username\" [innerText]=\"user?.badge\"></span> :\n          <span [innerText]=\"user?.prenom\"></span>&nbsp;\n          <span [innerText]=\"user?.nom\"></span>\n        </span>\n        <a href=\"\" (click)=\"off();$event.preventDefault()\">\n          <fa-icon icon=\"power-off\"></fa-icon>\n        </a>\n      </span>\n    </div>\n  </div>\n</nav>\n<div *ngIf=\"infoConnection\" class=\"d-flex justify-content-end\">\n  <span class=\"badge badge-light\"><span class=\"text-secondary\">dernier login :\n      {{infoConnection?.lastLogin | date:'dd/MM/yyyy hh:mm'}}</span> |\n    {{infoConnection?.currentTime | date:'dd/MM/yyyy hh:mm'}}</span>\n</div>\n"
+        },
+        {
+            "name": "SortableColumnComponent",
+            "id": "component-SortableColumnComponent-c61451e8e256bd47bc48873782dfa469",
+            "file": "src/app/comp/sortable-column/sortable-column.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-sortable-column",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./sortable-column.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "columnName",
+                    "line": 16,
+                    "type": "string"
+                },
+                {
+                    "name": "sortDirection",
+                    "defaultValue": "''",
+                    "line": 19
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "clickSort",
+                    "defaultValue": "new EventEmitter<SortData>()",
+                    "line": 22,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "columnSortedSubscription",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 33
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "click",
+                    "args": [],
+                    "argsDecorator": [],
+                    "line": 27
+                }
+            ],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { SortData } from '../../dto/sort-data';\r\nimport { SortService } from 'src/app/shared/sort.service';\r\n\r\n\r\n@Component({\r\n  selector: 'app-sortable-column',\r\n  templateUrl: './sortable-column.component.html'\r\n})\r\nexport class SortableColumnComponent implements OnInit, OnDestroy {\r\n\r\n  constructor(private sortService: SortService) { }\r\n\r\n  @Input()\r\n  columnName: string;\r\n\r\n  @Input()\r\n  sortDirection = '';\r\n\r\n  @Output()\r\n  clickSort = new EventEmitter<SortData>();\r\n\r\n  private columnSortedSubscription: Subscription;\r\n\r\n  @HostListener('click')\r\n  sort() {\r\n    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';\r\n    this.clickSort.emit({ columnName: this.columnName, sortDirection: this.sortDirection });\r\n    this.sortService.columnSorted({ columnName: this.columnName, sortDirection: this.sortDirection });\r\n  }\r\n\r\n  ngOnInit() {\r\n    // subscribe to sort changes so we can react when other columns are sorted\r\n    this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {\r\n      // reset this column's sort direction to hide the sort icons\r\n      if (this.columnName !== event.columnName) {\r\n        this.sortDirection = '';\r\n      }\r\n    });\r\n  }\r\n\r\n  ngOnDestroy() {\r\n    this.columnSortedSubscription.unsubscribe();\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "sortService",
+                        "type": "SortService"
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "sortService",
+                        "type": "SortService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<fa-icon class=\"mr-2\" icon=\"chevron-up\" *ngIf=\"sortDirection === 'asc'\"></fa-icon>\r\n<fa-icon class=\"mr-2\" icon=\"chevron-down\" *ngIf=\"sortDirection === 'desc'\"></fa-icon>\r\n<ng-content></ng-content>\r\n"
         }
     ],
     "modules": [
@@ -766,6 +1540,12 @@
                             "name": "CardComponent"
                         },
                         {
+                            "name": "FiltrePipe"
+                        },
+                        {
+                            "name": "ListCountriesComponent"
+                        },
+                        {
                             "name": "ModalPromptComponent"
                         },
                         {
@@ -773,6 +1553,9 @@
                         },
                         {
                             "name": "NavbarUgComponent"
+                        },
+                        {
+                            "name": "SortableColumnComponent"
                         }
                     ]
                 },
@@ -837,17 +1620,17 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/environments/environment.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: true\n}"
+                "defaultValue": "{\n  production: false\n}"
             },
             {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
+                "file": "src/environments/environment.prod.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "defaultValue": "{\n  production: true\n}"
             },
             {
                 "name": "infoConnection",
@@ -856,6 +1639,14 @@
                 "file": "src/stories/4-Navbar.stories.ts",
                 "type": "object",
                 "defaultValue": "{\r\n  lastLogin: 1582820287, currentTime: Date.now()\r\n}"
+            },
+            {
+                "name": "ListeTemplate",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/5-Liste.stories.ts",
+                "type": "",
+                "defaultValue": "() => ({\r\n  template: `<app-list-countries></app-list-countries>`\r\n})"
             },
             {
                 "name": "NavbarTemplate",
@@ -911,7 +1702,7 @@
                 "subtype": "variable",
                 "file": "src/stories/utils.ts",
                 "type": "object",
-                "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+                "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff,\r\n            faChevronUp,\r\n            faChevronDown\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
             },
             {
                 "name": "require",
@@ -1058,16 +1849,6 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -1076,6 +1857,16 @@
                     "file": "src/environments/environment.ts",
                     "type": "object",
                     "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
                 }
             ],
             "src/stories/4-Navbar.stories.ts": [
@@ -1120,6 +1911,16 @@
                     "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\r\n  posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
                 }
             ],
+            "src/stories/5-Liste.stories.ts": [
+                {
+                    "name": "ListeTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/5-Liste.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  template: `<app-list-countries></app-list-countries>`\r\n})"
+                }
+            ],
             "src/stories/utils.ts": [
                 {
                     "name": "provideFa",
@@ -1127,7 +1928,7 @@
                     "subtype": "variable",
                     "file": "src/stories/utils.ts",
                     "type": "object",
-                    "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
+                    "defaultValue": "{\r\n  imports: [FontAwesomeModule],\r\n  // The key bit is the providers array below.\r\n  providers: [\r\n    {\r\n      provide: APP_INITIALIZER,\r\n      useFactory: (iconLibrary: FaIconLibrary) => {\r\n        return async () => {\r\n          // Add the necessary icons inside the initializer body.\r\n          iconLibrary.addIcons(\r\n            faCheck,\r\n            faSearch,\r\n            faPowerOff,\r\n            faChevronUp,\r\n            faChevronDown\r\n          );\r\n        };\r\n      },\r\n      // When using a factory provider you need to\r\n      // explicitly specify its dependencies.\r\n      deps: [FaIconLibrary],\r\n      multi: true,\r\n    },\r\n  ]\r\n}"
                 }
             ],
             "src/stories/3-Modal.stories.ts": [
@@ -1147,7 +1948,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 3,
+        "count": 4,
         "status": "low",
         "files": [
             {
@@ -1169,6 +1970,15 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/classes/sortable/sortable.component.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "SortableComponent",
+                "coveragePercent": 20,
+                "coverageCount": "2/10",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/comp/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -1185,6 +1995,15 @@
                 "coveragePercent": 0,
                 "coverageCount": "0/10",
                 "status": "low"
+            },
+            {
+                "filePath": "src/app/comp/list-countries/list-countries.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ListCountriesComponent",
+                "coveragePercent": 38,
+                "coverageCount": "5/13",
+                "status": "medium"
             },
             {
                 "filePath": "src/app/comp/modal-prompt/modal-prompt.component.ts",
@@ -1214,12 +2033,57 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/comp/sortable-column/sortable-column.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SortableColumnComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/dto/country.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Country",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/dto/sort-data.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "SortData",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/dto/user.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "User",
                 "coveragePercent": 0,
                 "coverageCount": "0/10",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/pipes/filtre.pipe.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "FiltrePipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/sort.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "SortService",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1397,6 +2261,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "user",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/5-Liste.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ListeTemplate",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
