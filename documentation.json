@@ -201,31 +201,38 @@
     "interfaces": [
         {
             "name": "Country",
-            "id": "interface-Country-2844ab45460a2c068d1e19997014807f",
+            "id": "interface-Country-3b216f266ca7318883cfd8cfe1e7dac0",
             "file": "src/app/dto/country.ts",
             "type": "interface",
-            "sourceCode": "export interface Country {\r\n  name: string;\r\n  area: number;\r\n  population: number;\r\n}\r\n",
+            "sourceCode": "export interface Country {\r\n  id: number;\r\n  name: string;\r\n  area: number;\r\n  population: number;\r\n}\r\n",
             "properties": [
                 {
                     "name": "area",
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 3
+                    "line": 4
+                },
+                {
+                    "name": "id",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
                 },
                 {
                     "name": "name",
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 2
+                    "line": 3
                 },
                 {
                     "name": "population",
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 4
+                    "line": 5
                 }
             ],
             "indexSignatures": [],
@@ -468,58 +475,58 @@
         },
         {
             "name": "SortableComponent",
-            "id": "class-SortableComponent-382d90e7b16e1627a033180303f3d94c",
+            "id": "class-SortableComponent-8b5504a144ab410868b35b98224d91ae",
             "file": "src/app/classes/sortable/sortable.component.ts",
             "type": "class",
-            "sourceCode": "import { SortData } from 'src/app/dto/sort-data';\r\n\r\nexport class SortableComponent {\r\n\r\n  // pagination\r\n  page = 1;\r\n  start = 0;\r\n  end = 3;\r\n  nbByPage = 3;\r\n  // tri\r\n  order = null;\r\n  reverse = false;\r\n\r\n  /**\r\n   * Tri de la liste via la colonne sur laquelle on vient de cliquer\r\n   * @param champs: nom du champ et direction de tri\r\n   */\r\n  sortTable(champs: SortData): void {\r\n    // tri\r\n    this.reverse = (champs.sortDirection !== 'asc');\r\n    this.order = champs.columnName;\r\n  }\r\n\r\n  /**\r\n   * Changement de pagination\r\n   * @param page: le numéro de page envoyé par la barre de pagination\r\n   */\r\n  changePagination(page: number): void {\r\n    this.start = (page - 1) * this.nbByPage;\r\n    this.end = this.start + this.nbByPage;\r\n  }\r\n\r\n  changeNbByPage(): void {\r\n    this.nbByPage = parseInt(this.nbByPage.toString(), 0);\r\n    this.page = 1;\r\n    this.changePagination(1);\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { SortData } from 'src/app/dto/sort-data';\r\n\r\nexport class SortableComponent {\r\n\r\n  /**\r\n   * Page courante\r\n   */\r\n  page = 1;\r\n  /**\r\n   * Index de début de la pagination\r\n   */\r\n  start = 0;\r\n  /**\r\n   * Index de fin de la pagination\r\n   */\r\n  end = 3;\r\n  /**\r\n   * Nombre d'items par page\r\n   */\r\n  nbByPage = 3;\r\n  /**\r\n   * Objet contenant les champs de tri\r\n   */\r\n  order = null;\r\n  /**\r\n   * Ordre de tri\r\n   */\r\n  reverse = false;\r\n\r\n  /**\r\n   * Tri de la liste via la colonne sur laquelle on vient de cliquer\r\n   * @param champs: nom du champ et direction de tri\r\n   */\r\n  sortTable(champs: SortData): void {\r\n    // tri\r\n    this.reverse = (champs.sortDirection !== 'asc');\r\n    this.order = champs.columnName;\r\n  }\r\n\r\n  /**\r\n   * Changement de pagination\r\n   * @param page: le numéro de page envoyé par la barre de pagination\r\n   */\r\n  changePagination(page: number): void {\r\n    this.start = (page - 1) * this.nbByPage;\r\n    this.end = this.start + this.nbByPage;\r\n  }\r\n\r\n  /**\r\n   * Changement du nombre d'items par page\r\n   */\r\n  changeNbByPage(): void {\r\n    this.nbByPage = parseInt(this.nbByPage.toString(), 0);\r\n    this.page = 1;\r\n    this.changePagination(1);\r\n  }\r\n\r\n}\r\n",
             "properties": [
                 {
                     "name": "end",
                     "defaultValue": "3",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 8
+                    "description": "<p>Index de fin de la pagination</p>\n",
+                    "line": 16
                 },
                 {
                     "name": "nbByPage",
                     "defaultValue": "3",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 9
+                    "description": "<p>Nombre d&#39;items par page</p>\n",
+                    "line": 20
                 },
                 {
                     "name": "order",
                     "defaultValue": "null",
                     "type": "null",
                     "optional": false,
-                    "description": "",
-                    "line": 11
+                    "description": "<p>Objet contenant les champs de tri</p>\n",
+                    "line": 24
                 },
                 {
                     "name": "page",
                     "defaultValue": "1",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 6
+                    "description": "<p>Page courante</p>\n",
+                    "line": 8
                 },
                 {
                     "name": "reverse",
                     "defaultValue": "false",
                     "type": "",
                     "optional": false,
-                    "description": "",
-                    "line": 12
+                    "description": "<p>Ordre de tri</p>\n",
+                    "line": 28
                 },
                 {
                     "name": "start",
                     "defaultValue": "0",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 7
+                    "description": "<p>Index de début de la pagination</p>\n",
+                    "line": 12
                 }
             ],
             "methods": [
@@ -529,7 +536,8 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33
+                    "line": 52,
+                    "description": "<p>Changement du nombre d&#39;items par page</p>\n"
                 },
                 {
                     "name": "changePagination",
@@ -542,20 +550,20 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 44,
                     "description": "<p>Changement de pagination</p>\n",
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 548,
-                                "end": 552,
+                                "pos": 788,
+                                "end": 792,
                                 "flags": 0,
                                 "escapedText": "page"
                             },
                             "type": "number",
                             "tagName": {
-                                "pos": 542,
-                                "end": 547,
+                                "pos": 782,
+                                "end": 787,
                                 "flags": 0,
                                 "escapedText": "param"
                             },
@@ -574,20 +582,20 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 34,
                     "description": "<p>Tri de la liste via la colonne sur laquelle on vient de cliquer</p>\n",
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 300,
-                                "end": 306,
+                                "pos": 540,
+                                "end": 546,
                                 "flags": 0,
                                 "escapedText": "champs"
                             },
                             "type": "SortData",
                             "tagName": {
-                                "pos": 294,
-                                "end": 299,
+                                "pos": 534,
+                                "end": 539,
                                 "flags": 0,
                                 "escapedText": "param"
                             },
@@ -607,7 +615,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-bafbc33b6e918d6ec43c0e9913672799",
+            "id": "component-AppComponent-f7f1a9c885b17ef097003c4aef0337bd",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -627,12 +635,20 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
+                    "name": "countries$",
+                    "defaultValue": "of([\n    {\n      id: 0,\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      id: 1,\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      id: 2,\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      id: 3,\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      id: 4,\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      id: 5,\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      id: 6,\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      id: 7,\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ])",
+                    "type": "Observable<Country[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
                     "name": "infoConnection",
                     "defaultValue": "{\n    lastLogin: 1582820287, currentTime: Date.now()\n  }",
                     "type": "object",
                     "optional": false,
                     "description": "",
-                    "line": 17
+                    "line": 19
                 },
                 {
                     "name": "title",
@@ -640,7 +656,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 11
+                    "line": 13
                 },
                 {
                     "name": "titleReglement",
@@ -648,7 +664,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 12
+                    "line": 14
                 },
                 {
                     "name": "urlLogo",
@@ -656,7 +672,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 20
+                    "line": 22
                 },
                 {
                     "name": "user",
@@ -664,7 +680,7 @@
                     "type": "User",
                     "optional": false,
                     "description": "",
-                    "line": 13
+                    "line": 15
                 }
             ],
             "methodsClass": [
@@ -674,7 +690,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28
+                    "line": 81
                 },
                 {
                     "name": "ngOnInit",
@@ -682,7 +698,29 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24
+                    "line": 77
+                },
+                {
+                    "name": "receiveCountry",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 85,
+                    "jsdoctags": [
+                        {
+                            "name": "id",
+                            "type": "number",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
                 }
             ],
             "hostBindings": [],
@@ -690,7 +728,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\nimport { User } from './dto/user';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n  titleReglement = 'Règlement';\n  user: User = {\n    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\n    posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  };\n  infoConnection = {\n    lastLogin: 1582820287, currentTime: Date.now()\n  };\n  urlLogo = 'assets/img/logosma_accueil.png';\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(): void {\n    console.log('test');\n  }\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { UtilsService } from './shared/utils.service';\nimport { User } from './dto/user';\nimport { Observable, of } from 'rxjs';\nimport { Country } from './dto/country';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.scss']\n})\nexport class AppComponent implements OnInit {\n  title = 'angular-storybook';\n  titleReglement = 'Règlement';\n  user: User = {\n    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\n    posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\n  };\n  infoConnection = {\n    lastLogin: 1582820287, currentTime: Date.now()\n  };\n  urlLogo = 'assets/img/logosma_accueil.png';\n\n  countries$: Observable<Country[]> = of([\n    {\n      id: 0,\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      id: 1,\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      id: 2,\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      id: 3,\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      id: 4,\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      id: 5,\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      id: 6,\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      id: 7,\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ]);\n\n  constructor(private utilsService: UtilsService) { }\n\n  ngOnInit() {\n    this.utilsService.initFaIcons();\n  }\n\n  clickBtn(): void {\n    console.log('test');\n  }\n\n  receiveCountry(id: number): void {\n    console.log(`valid country ${id}`);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -708,7 +746,7 @@
                         "type": "UtilsService"
                     }
                 ],
-                "line": 20,
+                "line": 73,
                 "jsdoctags": [
                     {
                         "name": "utilsService",
@@ -722,7 +760,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n<div class=\"container-fluid border\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn()\" [content]=\"'With supporting text below as a natural lead-in to additional content.'\">\n  </app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn()\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\" [appTitle]=\"titleReglement\"\n    (logoutClicked)=\"clickBtn()\" [urlLogo]=\"urlLogo\">\n  </app-navbar-ug>\n\n  <hr>\n\n  <app-list-countries></app-list-countries>\n\n</div>\n"
+            "templateData": "<app-navbar [user]=\"user\" [appTitle]=\"title\" [urlLogo]=\"urlLogo\"></app-navbar>\n<div class=\"container-fluid border\">\n  <h2>Angular Storybook - Bootstrap</h2>\n  <app-card [type]=\"'primary'\" [color]=\"'white'\" [header]=\"'Card component'\" [title]=\"'Titre du contenu de la carte'\"\n    (btnClicked)=\"clickBtn()\" [content]=\"'With supporting text below as a natural lead-in to additional content.'\">\n  </app-card>\n\n  <hr>\n\n  <div class=\"p-2\">\n    <span class=\"mr-2\">\n      <app-button [color]=\"'primary'\" [icon]=\"'check'\" [label]=\"'Bouton'\" (btnClicked)=\"clickBtn()\"></app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'secondary'\" [icon]=\"'search'\" [label]=\"'Autre'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n    <span class=\"mr-2\">\n      <app-button [color]=\"'warning'\" [size]=\"'sm'\" [label]=\"'Petit bouton'\" (btnClicked)=\"clickBtn()\">\n      </app-button>\n    </span>\n  </div>\n\n  <hr>\n\n  <app-modal-prompt></app-modal-prompt>\n\n  <hr>\n\n  <app-navbar-ug [infoConnection]=\"infoConnection\" [user]=\"user\" [appTitle]=\"titleReglement\"\n    (logoutClicked)=\"clickBtn()\" [urlLogo]=\"urlLogo\">\n  </app-navbar-ug>\n\n  <hr>\n\n  <app-list-countries (validCountry)=\"receiveCountry($event)\" [countries]=\"countries$ | async\"></app-list-countries>\n\n</div>\n"
         },
         {
             "name": "ButtonComponent",
@@ -911,7 +949,7 @@
         },
         {
             "name": "ListCountriesComponent",
-            "id": "component-ListCountriesComponent-3eb76fb42642609b398fbb944135f34f",
+            "id": "component-ListCountriesComponent-2e738d25d9cb97986b8ebaf9e9244159",
             "file": "src/app/comp/list-countries/list-countries.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -925,31 +963,38 @@
                 "./list-countries.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
+            "inputsClass": [
                 {
-                    "name": "countries$",
-                    "defaultValue": "of([\n    {\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ])",
-                    "type": "Observable<Country[]>",
-                    "optional": false,
-                    "description": "<p>La liste de données\nPeut également être déclarée en &#39;@Input&#39;</p>\n",
-                    "line": 21
-                },
+                    "name": "countries",
+                    "description": "<p>La liste de données</p>\n",
+                    "line": 20,
+                    "type": "Country[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "validCountry",
+                    "defaultValue": "new EventEmitter<number>()",
+                    "description": "<p>Event lancé au clic sur l&#39;action de liste</p>\n",
+                    "line": 26,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
                 {
                     "name": "formCountries",
                     "type": "FormGroup",
                     "optional": false,
                     "description": "<p>Le formulaire de filtre</p>\n",
-                    "line": 16
+                    "line": 15
                 },
                 {
                     "name": "end",
                     "defaultValue": "3",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 8,
+                    "description": "<p>Index de fin de la pagination</p>\n",
+                    "line": 16,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -959,8 +1004,8 @@
                     "defaultValue": "3",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 9,
+                    "description": "<p>Nombre d&#39;items par page</p>\n",
+                    "line": 20,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -970,8 +1015,8 @@
                     "defaultValue": "null",
                     "type": "null",
                     "optional": false,
-                    "description": "",
-                    "line": 11,
+                    "description": "<p>Objet contenant les champs de tri</p>\n",
+                    "line": 24,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -981,8 +1026,8 @@
                     "defaultValue": "1",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 6,
+                    "description": "<p>Page courante</p>\n",
+                    "line": 8,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -992,8 +1037,8 @@
                     "defaultValue": "false",
                     "type": "",
                     "optional": false,
-                    "description": "",
-                    "line": 12,
+                    "description": "<p>Ordre de tri</p>\n",
+                    "line": 28,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -1003,8 +1048,8 @@
                     "defaultValue": "0",
                     "type": "number",
                     "optional": false,
-                    "description": "",
-                    "line": 7,
+                    "description": "<p>Index de début de la pagination</p>\n",
+                    "line": 12,
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -1012,12 +1057,45 @@
             ],
             "methodsClass": [
                 {
+                    "name": "valid",
+                    "args": [
+                        {
+                            "name": "id",
+                            "type": "number"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "description": "<p>Méthode d&#39;appel d&#39;événement au clic sur une action</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": {
+                                "pos": 1163,
+                                "end": 1165,
+                                "flags": 0,
+                                "escapedText": "id"
+                            },
+                            "type": "number",
+                            "tagName": {
+                                "pos": 1157,
+                                "end": 1162,
+                                "flags": 0,
+                                "escapedText": "param"
+                            },
+                            "comment": "<p>de l&#39;item de liste</p>\n"
+                        }
+                    ]
+                },
+                {
                     "name": "changeNbByPage",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 52,
+                    "description": "<p>Changement du nombre d&#39;items par page</p>\n",
                     "inheritance": {
                         "file": "SortableComponent"
                     }
@@ -1033,20 +1111,20 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 44,
                     "description": "<p>Changement de pagination</p>\n",
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 548,
-                                "end": 552,
+                                "pos": 788,
+                                "end": 792,
                                 "flags": 0,
                                 "escapedText": "page"
                             },
                             "type": "number",
                             "tagName": {
-                                "pos": 542,
-                                "end": 547,
+                                "pos": 782,
+                                "end": 787,
                                 "flags": 0,
                                 "escapedText": "param"
                             },
@@ -1068,20 +1146,20 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 34,
                     "description": "<p>Tri de la liste via la colonne sur laquelle on vient de cliquer</p>\n",
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 300,
-                                "end": 306,
+                                "pos": 540,
+                                "end": 546,
                                 "flags": 0,
                                 "escapedText": "champs"
                             },
                             "type": "SortData",
                             "tagName": {
-                                "pos": 294,
-                                "end": 299,
+                                "pos": 534,
+                                "end": 539,
                                 "flags": 0,
                                 "escapedText": "param"
                             },
@@ -1098,7 +1176,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { Observable, of } from 'rxjs';\nimport { Country } from 'src/app/dto/country';\nimport { SortableComponent } from 'src/app/classes/sortable/sortable.component';\nimport { FormGroup, FormControl } from '@angular/forms';\n\n@Component({\n  selector: 'app-list-countries',\n  templateUrl: './list-countries.component.html'\n})\nexport class ListCountriesComponent extends SortableComponent {\n\n  /**\n   * Le formulaire de filtre\n   */\n  formCountries: FormGroup;\n  /**\n   * La liste de données\n   * Peut également être déclarée en '@Input'\n   */\n  countries$: Observable<Country[]> = of([\n    {\n      name: 'Russia',\n      area: 17075200,\n      population: 146989754\n    },\n    {\n      name: 'France',\n      area: 640679,\n      population: 64979548\n    },\n    {\n      name: 'Canada',\n      area: 9976140,\n      population: 36624199\n    },\n    {\n      name: 'United States',\n      area: 9629091,\n      population: 324459463\n    },\n    {\n      name: 'China',\n      area: 9596960,\n      population: 1409517397\n    },\n    {\n      name: 'Other',\n      area: 95969,\n      population: 140\n    },\n    {\n      name: 'Utopia',\n      area: 555555555,\n      population: 1\n    },\n    {\n      name: 'Germany',\n      area: 621211,\n      population: 65214652\n    }\n  ]);\n\n  /**\n   * Construction du formulaire de filtre\n   */\n  constructor() {\n    super();\n    this.formCountries = new FormGroup({\n      name: new FormControl(''),\n      area: new FormControl(''),\n      population: new FormControl('')\n    });\n  }\n\n  /**\n   * Getter de composant pour injecter les données du formulaire dans le pipe de filtre\n   */\n  get filtres(): any {\n    return this.formCountries.value;\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { Country } from 'src/app/dto/country';\nimport { SortableComponent } from 'src/app/classes/sortable/sortable.component';\nimport { FormGroup, FormControl } from '@angular/forms';\n\n@Component({\n  selector: 'app-list-countries',\n  templateUrl: './list-countries.component.html'\n})\nexport class ListCountriesComponent extends SortableComponent {\n\n  /**\n   * Le formulaire de filtre\n   */\n  formCountries: FormGroup;\n  /**\n   * La liste de données\n   */\n  @Input()\n  countries: Country[];\n\n  /**\n   * Event lancé au clic sur l'action de liste\n   */\n  @Output()\n  validCountry = new EventEmitter<number>();\n\n  /**\n   * Construction du formulaire de filtre\n   */\n  constructor() {\n    super();\n    this.formCountries = new FormGroup({\n      name: new FormControl(''),\n      area: new FormControl(''),\n      population: new FormControl('')\n    });\n  }\n\n  /**\n   * Getter de composant pour injecter les données du formulaire dans le pipe de filtre\n   */\n  get filtres(): any {\n    return this.formCountries.value;\n  }\n\n  /**\n   * Méthode d'appel d'événement au clic sur une action\n   * @param id de l\\'item de liste\n   */\n  valid(id: number): void {\n    this.validCountry.emit(id);\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -1106,7 +1184,7 @@
                 "name": "constructor",
                 "description": "<p>Construction du formulaire de filtre</p>\n",
                 "args": [],
-                "line": 62
+                "line": 26
             },
             "extends": "SortableComponent",
             "accessors": {
@@ -1116,12 +1194,12 @@
                         "name": "filtres",
                         "type": "any",
                         "returnType": "any",
-                        "line": 79,
+                        "line": 43,
                         "description": "<p>Getter de composant pour injecter les données du formulaire dans le pipe de filtre</p>\n"
                     }
                 }
             },
-            "templateData": "<div class=\"card\">\n  <ng-container *ngIf=\"countries$ | async as countries; else loadingCountries\">\n    <form [formGroup]=\"formCountries\">\n      <table class=\"table table-striped\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"name\" (clickSort)=\"sortTable($event)\">Country</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"area\" (clickSort)=\"sortTable($event)\">Area</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"population\" (clickSort)=\"sortTable($event)\">Population\n              </app-sortable-column>\n            </th>\n          </tr>\n          <tr>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"name\" formControlName=\"name\"></th>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"area\" formControlName=\"area\"></th>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"population\" formControlName=\"population\">\n            </th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let country of countries\n          | filtre:false:false:filtres\n          | orderBy: order:reverse\n          | slice:start:end; index as i\">\n            <td>{{country.name}}</td>\n            <td>{{country.area}}</td>\n            <td>{{country.population}}</td>\n          </tr>\n        </tbody>\n      </table>\n      <div class=\"card-footer\">\n        <div class=\"row\">\n          <div class=\"col\">\n            <select class=\"custom-select custom-select-sm w-auto\" [(ngModel)]=\"nbByPage\"\n              [ngModelOptions]=\"{standalone: true}\" (change)=\"changeNbByPage()\">\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n              <option value=\"10\">10</option>\n              <option value=\"20\">20</option>\n              <option value=\"25\">25</option>\n            </select>\n          </div>\n          <div class=\"col\">\n            <ngb-pagination [(page)]=\"page\" [rotate]=\"true\" [boundaryLinks]=\"true\" [pageSize]=\"nbByPage\"\n              [collectionSize]=\"countries.length\" size=\"sm\" (pageChange)=\"changePagination(page)\"></ngb-pagination>\n          </div>\n        </div>\n\n      </div>\n    </form>\n  </ng-container>\n  <ng-template #loadingCountries>\n    <div class=\"m-4 alert alert-primary\" role=\"alert\">\n      Chargement ...\n    </div>\n  </ng-template>\n</div>\n"
+            "templateData": "<div class=\"card\">\n  <ng-container *ngIf=\"countries.length > 0; else loadingCountries\">\n    <form [formGroup]=\"formCountries\">\n      <table class=\"table table-striped\">\n        <thead class=\"thead-dark\">\n          <tr>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"name\" (clickSort)=\"sortTable($event)\">Country</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"area\" (clickSort)=\"sortTable($event)\">Area</app-sortable-column>\n            </th>\n            <th scope=\"col\">\n              <app-sortable-column columnName=\"population\" (clickSort)=\"sortTable($event)\">Population\n              </app-sortable-column>\n            </th>\n            <th>Action</th>\n          </tr>\n          <tr>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"name\" formControlName=\"name\"></th>\n            <th><input class=\"form-control form-control-sm\" type=\"text\" name=\"area\" formControlName=\"area\"></th>\n            <th>\n              <input class=\"form-control form-control-sm\" type=\"text\" name=\"population\" formControlName=\"population\">\n            </th>\n            <th>&nbsp;</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let country of countries\n          | filtre:false:false:filtres\n          | orderBy: order:reverse\n          | slice:start:end; index as i\">\n            <td>{{country.name}}</td>\n            <td>{{country.area}}</td>\n            <td>{{country.population}}</td>\n            <td>\n              <button class=\"btn btn-sm\">\n                <fa-icon (click)=\"valid(country.id)\" class=\"text-primary\" icon=\"search\"></fa-icon>\n              </button>\n            </td>\n          </tr>\n        </tbody>\n      </table>\n      <div class=\"card-footer\">\n        <div class=\"row\">\n          <div class=\"col\">\n            <select class=\"custom-select custom-select-sm w-auto\" [(ngModel)]=\"nbByPage\"\n              [ngModelOptions]=\"{standalone: true}\" (change)=\"changeNbByPage()\">\n              <option value=\"3\">3</option>\n              <option value=\"5\">5</option>\n              <option value=\"10\">10</option>\n              <option value=\"20\">20</option>\n              <option value=\"25\">25</option>\n            </select>\n          </div>\n          <div class=\"col\">\n            <ngb-pagination [(page)]=\"page\" [rotate]=\"true\" [boundaryLinks]=\"true\" [pageSize]=\"nbByPage\"\n              [collectionSize]=\"countries.length\" size=\"sm\" (pageChange)=\"changePagination(page)\"></ngb-pagination>\n          </div>\n        </div>\n\n      </div>\n    </form>\n  </ng-container>\n  <ng-template #loadingCountries>\n    <div class=\"m-4 alert alert-warning\" role=\"alert\">\n      Aucun item dans la liste ...\n    </div>\n  </ng-template>\n</div>\n"
         },
         {
             "name": "ModalPromptComponent",
@@ -1617,6 +1695,14 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "countries$",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/5-Liste.stories.ts",
+                "type": "Observable<Country[]>",
+                "defaultValue": "of([\r\n  {\r\n    id: 0,\r\n    name: 'Russia',\r\n    area: 17075200,\r\n    population: 146989754\r\n  },\r\n  {\r\n    id: 1,\r\n    name: 'France',\r\n    area: 640679,\r\n    population: 64979548\r\n  },\r\n  {\r\n    id: 2,\r\n    name: 'Canada',\r\n    area: 9976140,\r\n    population: 36624199\r\n  },\r\n  {\r\n    id: 3,\r\n    name: 'United States',\r\n    area: 9629091,\r\n    population: 324459463\r\n  },\r\n  {\r\n    id: 4,\r\n    name: 'China',\r\n    area: 9596960,\r\n    population: 1409517397\r\n  },\r\n  {\r\n    id: 5,\r\n    name: 'Other',\r\n    area: 95969,\r\n    population: 140\r\n  },\r\n  {\r\n    id: 6,\r\n    name: 'Utopia',\r\n    area: 555555555,\r\n    population: 1\r\n  },\r\n  {\r\n    id: 7,\r\n    name: 'Germany',\r\n    area: 621211,\r\n    population: 65214652\r\n  }\r\n])"
+            },
+            {
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1646,7 +1732,7 @@
                 "subtype": "variable",
                 "file": "src/stories/5-Liste.stories.ts",
                 "type": "",
-                "defaultValue": "() => ({\r\n  template: `<app-list-countries></app-list-countries>`\r\n})"
+                "defaultValue": "() => ({\r\n  template: `<app-list-countries (validCountry)=\"receiveCountry($event)\" [countries]=\"countries$ | async\"></app-list-countries>`,\r\n  props: {\r\n    countries$,\r\n    receiveCountry: action('Action liée au bouton')\r\n  }\r\n})"
             },
             {
                 "name": "NavbarTemplate",
@@ -1849,6 +1935,24 @@
                     "type": "literal type"
                 }
             ],
+            "src/stories/5-Liste.stories.ts": [
+                {
+                    "name": "countries$",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/5-Liste.stories.ts",
+                    "type": "Observable<Country[]>",
+                    "defaultValue": "of([\r\n  {\r\n    id: 0,\r\n    name: 'Russia',\r\n    area: 17075200,\r\n    population: 146989754\r\n  },\r\n  {\r\n    id: 1,\r\n    name: 'France',\r\n    area: 640679,\r\n    population: 64979548\r\n  },\r\n  {\r\n    id: 2,\r\n    name: 'Canada',\r\n    area: 9976140,\r\n    population: 36624199\r\n  },\r\n  {\r\n    id: 3,\r\n    name: 'United States',\r\n    area: 9629091,\r\n    population: 324459463\r\n  },\r\n  {\r\n    id: 4,\r\n    name: 'China',\r\n    area: 9596960,\r\n    population: 1409517397\r\n  },\r\n  {\r\n    id: 5,\r\n    name: 'Other',\r\n    area: 95969,\r\n    population: 140\r\n  },\r\n  {\r\n    id: 6,\r\n    name: 'Utopia',\r\n    area: 555555555,\r\n    population: 1\r\n  },\r\n  {\r\n    id: 7,\r\n    name: 'Germany',\r\n    area: 621211,\r\n    population: 65214652\r\n  }\r\n])"
+                },
+                {
+                    "name": "ListeTemplate",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/5-Liste.stories.ts",
+                    "type": "",
+                    "defaultValue": "() => ({\r\n  template: `<app-list-countries (validCountry)=\"receiveCountry($event)\" [countries]=\"countries$ | async\"></app-list-countries>`,\r\n  props: {\r\n    countries$,\r\n    receiveCountry: action('Action liée au bouton')\r\n  }\r\n})"
+                }
+            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -1911,16 +2015,6 @@
                     "defaultValue": "{\r\n  badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',\r\n  posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'\r\n}"
                 }
             ],
-            "src/stories/5-Liste.stories.ts": [
-                {
-                    "name": "ListeTemplate",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/5-Liste.stories.ts",
-                    "type": "",
-                    "defaultValue": "() => ({\r\n  template: `<app-list-countries></app-list-countries>`\r\n})"
-                }
-            ],
             "src/stories/utils.ts": [
                 {
                     "name": "provideFa",
@@ -1948,7 +2042,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 4,
+        "count": 7,
         "status": "low",
         "files": [
             {
@@ -1966,7 +2060,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/9",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {
@@ -1974,9 +2068,9 @@
                 "type": "class",
                 "linktype": "classe",
                 "name": "SortableComponent",
-                "coveragePercent": 20,
-                "coverageCount": "2/10",
-                "status": "low"
+                "coveragePercent": 90,
+                "coverageCount": "9/10",
+                "status": "very-good"
             },
             {
                 "filePath": "src/app/comp/button/button.component.ts",
@@ -2001,9 +2095,9 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "ListCountriesComponent",
-                "coveragePercent": 38,
-                "coverageCount": "5/13",
-                "status": "medium"
+                "coveragePercent": 93,
+                "coverageCount": "14/15",
+                "status": "very-good"
             },
             {
                 "filePath": "src/app/comp/modal-prompt/modal-prompt.component.ts",
@@ -2047,7 +2141,7 @@
                 "linktype": "interface",
                 "name": "Country",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -2261,6 +2355,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "user",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/5-Liste.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "countries$",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
