@@ -1,6 +1,6 @@
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { APP_INITIALIZER } from '@angular/core';
-import { faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown, faSort, faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 export const provideFa = {
   imports: [FontAwesomeModule],
   // The key bit is the providers array below.
@@ -15,7 +15,10 @@ export const provideFa = {
             faSearch,
             faPowerOff,
             faChevronUp,
-            faChevronDown
+            faChevronDown,
+            faSort,
+            faSortUp,
+            faSortDown
           );
         };
       },

@@ -48,7 +48,7 @@ export class UtilsService {
 
   initFaIcons(): void {
     this.faIconLibrary.addIcons(
-      faChevronUp, faChevronDown
+      faSort, faSortDown, faSortUp
     );
   }
 

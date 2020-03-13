@@ -403,7 +403,7 @@
         },
         {
             "name": "UtilsService",
-            "id": "injectable-UtilsService-b93349117cff403971cd7201ef08a0e1",
+            "id": "injectable-UtilsService-3bc2b3acc30d438d3e587b72d802994e",
             "file": "src/app/shared/utils.service.ts",
             "properties": [],
             "methods": [
@@ -417,7 +417,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown\n    );\n  }\n\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { FaIconLibrary } from '@fortawesome/angular-fontawesome';\nimport {\n  faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown, faSort, faSortUp, faSortDown\n} from '@fortawesome/free-solid-svg-icons';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UtilsService {\n\n  constructor(private faIconLibrary: FaIconLibrary) { }\n\n  initFaIcons(): void {\n    this.faIconLibrary.addIcons(\n      faCheck, faSearch, faPowerOff, faChevronUp, faChevronDown, faSort, faSortUp, faSortDown\n    );\n  }\n\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -1594,7 +1594,7 @@
                 "OnInit",
                 "OnDestroy"
             ],
-            "templateData": "<fa-icon class=\"mr-2\" icon=\"chevron-up\" *ngIf=\"sortDirection === 'asc'\"></fa-icon>\r\n<fa-icon class=\"mr-2\" icon=\"chevron-down\" *ngIf=\"sortDirection === 'desc'\"></fa-icon>\r\n<ng-content></ng-content>\r\n"
+            "templateData": "<fa-icon class=\"mr-2\" icon=\"sort\" *ngIf=\"sortDirection !== 'asc' && sortDirection !== 'desc'\"></fa-icon>\r\n<fa-icon class=\"mr-2\" icon=\"sort-up\" *ngIf=\"sortDirection === 'asc'\"></fa-icon>\r\n<fa-icon class=\"mr-2\" icon=\"sort-down\" *ngIf=\"sortDirection === 'desc'\"></fa-icon>\r\n<ng-content></ng-content>\r\n"
         }
     ],
     "modules": [
