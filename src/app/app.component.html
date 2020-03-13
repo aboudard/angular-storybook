@@ -33,6 +33,6 @@
 
   <hr>
 
-  <app-list-countries></app-list-countries>
+  <app-list-countries (validCountry)="receiveCountry($event)" [countries]="countries$ | async"></app-list-countries>
 
 </div>

@@ -2,13 +2,29 @@ import { SortData } from 'src/app/dto/sort-data';
 
 export class SortableComponent {
 
-  // pagination
+  /**
+   * Page courante
+   */
   page = 1;
+  /**
+   * Index de début de la pagination
+   */
   start = 0;
+  /**
+   * Index de fin de la pagination
+   */
   end = 3;
+  /**
+   * Nombre d'items par page
+   */
   nbByPage = 3;
-  // tri
+  /**
+   * Objet contenant les champs de tri
+   */
   order = null;
+  /**
+   * Ordre de tri
+   */
   reverse = false;
 
   /**
@@ -30,6 +46,9 @@ export class SortableComponent {
     this.end = this.start + this.nbByPage;
   }
 
+  /**
+   * Changement du nombre d'items par page
+   */
   changeNbByPage(): void {
     this.nbByPage = parseInt(this.nbByPage.toString(), 0);
     this.page = 1;

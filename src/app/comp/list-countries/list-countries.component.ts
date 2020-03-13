@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Country } from 'src/app/dto/country';
 import { SortableComponent } from 'src/app/classes/sortable/sortable.component';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -16,50 +15,15 @@ export class ListCountriesComponent extends SortableComponent {
   formCountries: FormGroup;
   /**
    * La liste de données
-   * Peut également être déclarée en '@Input'
    */
-  countries$: Observable<Country[]> = of([
-    {
-      name: 'Russia',
-      area: 17075200,
-      population: 146989754
-    },
-    {
-      name: 'France',
-      area: 640679,
-      population: 64979548
-    },
-    {
-      name: 'Canada',
-      area: 9976140,
-      population: 36624199
-    },
-    {
-      name: 'United States',
-      area: 9629091,
-      population: 324459463
-    },
-    {
-      name: 'China',
-      area: 9596960,
-      population: 1409517397
-    },
-    {
-      name: 'Other',
-      area: 95969,
-      population: 140
-    },
-    {
-      name: 'Utopia',
-      area: 555555555,
-      population: 1
-    },
-    {
-      name: 'Germany',
-      area: 621211,
-      population: 65214652
-    }
-  ]);
+  @Input()
+  countries: Country[];
+
+  /**
+   * Event lancé au clic sur l'action de liste
+   */
+  @Output()
+  validCountry = new EventEmitter<number>();
 
   /**
    * Construction du formulaire de filtre
@@ -78,6 +42,14 @@ export class ListCountriesComponent extends SortableComponent {
    */
   get filtres(): any {
     return this.formCountries.value;
+  }
+
+  /**
+   * Méthode d'appel d'événement au clic sur une action
+   * @param id de l\'item de liste
+   */
+  valid(id: number): void {
+    this.validCountry.emit(id);
   }
 
 }

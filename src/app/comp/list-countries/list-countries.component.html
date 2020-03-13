@@ -1,5 +1,5 @@
 <div class="card">
-  <ng-container *ngIf="countries$ | async as countries; else loadingCountries">
+  <ng-container *ngIf="countries.length > 0; else loadingCountries">
     <form [formGroup]="formCountries">
       <table class="table table-striped">
         <thead class="thead-dark">
@@ -14,12 +14,15 @@
               <app-sortable-column columnName="population" (clickSort)="sortTable($event)">Population
               </app-sortable-column>
             </th>
+            <th>Action</th>
           </tr>
           <tr>
             <th><input class="form-control form-control-sm" type="text" name="name" formControlName="name"></th>
             <th><input class="form-control form-control-sm" type="text" name="area" formControlName="area"></th>
-            <th><input class="form-control form-control-sm" type="text" name="population" formControlName="population">
+            <th>
+              <input class="form-control form-control-sm" type="text" name="population" formControlName="population">
             </th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +33,11 @@
             <td>{{country.name}}</td>
             <td>{{country.area}}</td>
             <td>{{country.population}}</td>
+            <td>
+              <button class="btn btn-sm">
+                <fa-icon (click)="valid(country.id)" class="text-primary" icon="search"></fa-icon>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -55,8 +63,8 @@
     </form>
   </ng-container>
   <ng-template #loadingCountries>
-    <div class="m-4 alert alert-primary" role="alert">
-      Chargement ...
+    <div class="m-4 alert alert-warning" role="alert">
+      Aucun item dans la liste ...
     </div>
   </ng-template>
 </div>

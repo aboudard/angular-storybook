@@ -1,13 +1,11 @@
 ## Liste component
 Ceci est un exemple de liste avec tri, filtres multicolonnes et pagination.
 Elle n'est pas faite pour être utilisée dans l'état, mais pour s'en inspirer.
-- On peut lui ajouter un @Input pour lui injecter la liste des objets à afficher
-- On lui donnera un nom correspondant à son utilisation (ici elle d'appelle list-countries)
 
-### Composant HTML parent
-```html
-<app-list-countries></app-list-countries>
-```
+* On peut lui ajouter un @Input pour lui injecter la liste des objets à afficher
+* On lui donnera un nom correspondant à son utilisation (ici elle d'appelle list-countries)
+* Elle appelle des méthodes du composant parent via des @Output, elle ne devrait pas appeler des services directement
+
 
 ### Dépendances / versions
 Cette liste utilise Bootstrap pour la liste, ng-bootstrap pour le widget de pagination et ngx-order pour le tri. Le filtre est assuré par un custom @Pipe.
@@ -65,10 +63,41 @@ La liste se compose des composants suivants :
 - La liste avec les différents pipes
 - Le widget de pagination
 
-#### Le template HTML
+### Composant HTML parent
+
+```js
+countries$: Observable<Country[]> = of([
+    {
+      name: 'Russia',
+      area: 17075200,
+      population: 146989754
+    },
+    {
+      name: 'France',
+      area: 640679,
+      population: 64979548
+    },
+    ...
+  ]);
+
+  receiveCountry(id: number): void {
+    console.log(`valid country ${id}`);
+  }
+```
+Le template : 
+
+```html
+<app-list-countries 
+  (validCountry)="receiveCountry($event)"
+  [countries]="countries$ | async">
+</app-list-countries>
+```
+
+### Composant liste
+
 ```html
 <div class="card">
-  <ng-container *ngIf="countries$ | async as countries; else loadingCountries">
+  <ng-container *ngIf="countries.length > 0; else loadingCountries">
     <form [formGroup]="formCountries">
       <table class="table table-striped">
         <thead class="thead-dark">
@@ -83,11 +112,13 @@ La liste se compose des composants suivants :
               <app-sortable-column columnName="population" (clickSort)="sortTable($event)">Population
               </app-sortable-column>
             </th>
+            <th>Action</th>
           </tr>
           <tr>
             <th><input class="form-control form-control-sm" type="text" name="name" formControlName="name"></th>
             <th><input class="form-control form-control-sm" type="text" name="area" formControlName="area"></th>
             <th><input class="form-control form-control-sm" type="text" name="population" formControlName="population"></th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
@@ -98,6 +129,11 @@ La liste se compose des composants suivants :
             <td>{{country.name}}</td>
             <td>{{country.area}}</td>
             <td>{{country.population}}</td>
+            <td>
+              <button class="btn btn-sm">
+                <fa-icon (click)="valid(country.id)" class="text-primary" icon="search"></fa-icon>
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -123,8 +159,8 @@ La liste se compose des composants suivants :
     </form>
   </ng-container>
   <ng-template #loadingCountries>
-    <div class="m-4 alert alert-primary" role="alert">
-      Chargement ...
+    <div class="m-4 alert alert-warning" role="alert">
+      Aucun item dans la liste ...
     </div>
   </ng-template>
 </div>
@@ -144,21 +180,14 @@ export class ListCountriesComponent extends SortableComponent {
   formCountries: FormGroup;
   /**
    * La liste de données
-   * Peut également être déclarée en '@Input'
    */
-  countries$: Observable<Country[]> = of([
-    {
-      name: 'Russia',
-      area: 17075200,
-      population: 146989754
-    },
-    {
-      name: 'France',
-      area: 640679,
-      population: 64979548
-    },
-    ...
-  ]);
+  @Input()
+  countries: Country[];
+  /**
+   * Event lancé au clic sur l'action de liste
+   */
+  @Output()
+  validCountry = new EventEmitter<number>();
 
   /**
    * Construction du formulaire de filtre
@@ -177,6 +206,13 @@ export class ListCountriesComponent extends SortableComponent {
    */
   get filtres(): any {
     return this.formCountries.value;
+  }
+  /**
+   * Méthode d'appel d'événement au clic sur une action
+   * @param id de l\'item de liste
+   */
+  valid(id: number): void {
+    this.validCountry.emit(id);
   }
 
 }
