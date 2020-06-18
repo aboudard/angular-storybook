@@ -29,7 +29,7 @@ export const NavbarTemplate = () => ({
   template: `<app-navbar [user]="user" [appTitle]="appTitle" [urlLogo]="urlLogo"></app-navbar>`,
   props: {
     user: { ...user, profil: select('Rôle', optionsRoles, 'Basic') },
-    urlLogo: 'assets/img/logosma_accueil.png',
+    urlLogo: 'img/logosma_accueil.png',
     appTitle: 'Application'
   }
 });
