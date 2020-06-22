@@ -1,20 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ButtonComponent } from './button.component';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: `app-host`,
+  template: `<app-button [label]="label" [color]="primary" [size]="size"></app-button>`
+})
+class TestHostComponent {
+  label = 'test';
+  color = 'primary';
+  size = 'sm';
+}
 
 describe('ButtonComponent', () => {
-  let component: ButtonComponent;
-  let fixture: ComponentFixture<ButtonComponent>;
+  let component: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonComponent ]
+      declarations: [ButtonComponent, TestHostComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ButtonComponent);
+    fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

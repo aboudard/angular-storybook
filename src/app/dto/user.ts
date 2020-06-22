@@ -5,7 +5,7 @@ export interface User {
   nom: string;
   version: string;
   profil: string;
-  siteGestion: string;
+  sitesGestion: string[];
   sgLabel: string;
   posteOp: string;
 }

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'angular-storybook';
   titleReglement = 'Règlement';
   user: User = {
-    badge: 'A10000', nom: 'SMA', prenom: 'User', siteGestion: 'SG26', sgLabel: 'UGS Auto flottes',
+    badge: 'A10000', nom: 'SMA', prenom: 'User', sitesGestion: ['SG26'], sgLabel: 'UGS Auto flottes',
     posteOp: 'SG12SALI', habilitations: ['EDIT'], profil: 'Administrateur', version: 'V-1.0.1'
   };
   infoConnection = {
