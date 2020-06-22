@@ -8,7 +8,7 @@ describe('SortService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.get(SortService);
+    service = TestBed.inject(SortService);
   });
 
   it('should be created', () => {
@@ -16,11 +16,11 @@ describe('SortService', () => {
   });
 
   it('should catch what is emitted', () => {
-      service.columnSorted$.subscribe((res) => {
-        expect(res.columnName).toEqual('test');
-        expect(res.sortDirection).toEqual('asc');
-      });
-      service.columnSorted({columnName: 'test', sortDirection: 'asc'});
+    service.columnSorted$.subscribe((res) => {
+      expect(res.columnName).toEqual('test');
+      expect(res.sortDirection).toEqual('asc');
     });
+    service.columnSorted({ columnName: 'test', sortDirection: 'asc' });
+  });
 
 });
